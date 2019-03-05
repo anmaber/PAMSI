@@ -10,7 +10,7 @@ class Tester
 {
   public:
     void runAllTests(std::istream& inputStream, std::ostream& dataOutputStream,
-                     std::ostream& timeOutputStream, const int testsNum = 10);
+                     std::ostream& timeOutputStream, const int testsNum = 1);
     virtual ~Tester() {}
 
   protected:

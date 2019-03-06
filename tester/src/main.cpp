@@ -113,15 +113,13 @@ MatrixSumInput MatrixSumTester::readSingleInput(std::istream& inputStream)
   return input;
 }
 
-
-
 int main(int /*argc*/, char* /*argv*/[])
 {
-    /*
+
     std::ifstream inputFile{"input.txt"};
     std::ofstream dataOutputFile{"output.txt"}, timeOutputFile{"times.csv"};
 
-    SumTester tester;
+    MatrixSumTester tester;
 
     if(!inputFile)
     {
@@ -130,6 +128,4 @@ int main(int /*argc*/, char* /*argv*/[])
     }
 
     tester.runAllTests(inputFile, dataOutputFile, timeOutputFile);
-*/
-    return 0;
 }

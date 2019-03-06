@@ -45,6 +45,13 @@ struct Matrix
   std::vector<float> data;
 };
 
+std::ostream& operator << (std::ostream& output, const Matrix& matrix)
+{
+    std::ostream_iterator<float> outIterator(output, " ");
+    std::copy(matrix.data.begin(), matrix.data.end(), outIterator);
+    return output;
+}
+
 int main(int /*argc*/, char* /*argv*/[])
 {
     /*

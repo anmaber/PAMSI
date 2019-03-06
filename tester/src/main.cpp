@@ -52,6 +52,12 @@ std::ostream& operator << (std::ostream& output, const Matrix& matrix)
     return output;
 }
 
+struct MatrixSumInput
+{
+    Matrix first;
+    Matrix second;
+};
+
 int main(int /*argc*/, char* /*argv*/[])
 {
     /*

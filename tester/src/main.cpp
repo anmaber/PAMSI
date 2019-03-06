@@ -4,41 +4,6 @@
 #include <numeric>
 #include <vector>
 
-/*
-class SumTester : public Tester<int, std::vector<int>>
-{
-  protected:
-    int runAlgorithm(const std::vector<int>& inputData) override;
-    std::vector<int> readSingleInput(std::istream& inputStream) override;
-};
-
-int SumTester::runAlgorithm(const std::vector<int>& inputData)
-{
-    return std::accumulate(std::begin(inputData), std::end(inputData), 0,
-                           std::plus<int>{});
-}
-
-std::vector<int> SumTester::readSingleInput(std::istream& inputStream)
-{
-    int numOfData = 0;
-
-    inputStream >> numOfData;
-
-    std::vector<int> result;
-    result.reserve(numOfData);
-
-    for(auto i = 0; i < numOfData; ++i)
-    {
-        int dataElement;
-        inputStream >> dataElement;
-
-        result.push_back(dataElement);
-    }
-
-    return result;
-}
-*/
-
 struct Matrix
 {
   int rowsNumber, columnsNumber;
@@ -113,7 +78,7 @@ MatrixSumInput MatrixSumTester::readSingleInput(std::istream& inputStream)
   return input;
 }
 
-int main(int /*argc*/, char* /*argv*/[])
+int main(int, char*[])
 {
 
     std::ifstream inputFile{"input.txt"};

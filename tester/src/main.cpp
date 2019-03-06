@@ -4,6 +4,7 @@
 #include <numeric>
 #include <vector>
 
+/*
 class SumTester : public Tester<int, std::vector<int>>
 {
   protected:
@@ -36,9 +37,17 @@ std::vector<int> SumTester::readSingleInput(std::istream& inputStream)
 
     return result;
 }
+*/
+
+struct Matrix
+{
+  int rowsNumber, columnsNumber;
+  std::vector<float> data;
+};
 
 int main(int /*argc*/, char* /*argv*/[])
 {
+    /*
     std::ifstream inputFile{"input.txt"};
     std::ofstream dataOutputFile{"output.txt"}, timeOutputFile{"times.csv"};
 
@@ -51,4 +60,6 @@ int main(int /*argc*/, char* /*argv*/[])
     }
 
     tester.runAllTests(inputFile, dataOutputFile, timeOutputFile);
+*/
+    return 0;
 }

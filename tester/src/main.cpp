@@ -65,6 +65,54 @@ protected:
   MatrixSumInput readSingleInput(std::istream& inputStream) override;
 };
 
+Matrix MatrixSumTester::runAlgorithm(const MatrixSumInput& inputData)
+{
+  const auto rowsNumber = inputData.first.rowsNumber;
+  const auto columnsNumber = inputData.first.columnsNumber;
+
+  Matrix result;
+
+  result.rowsNumber = rowsNumber;
+  result.columnsNumber = columnsNumber;
+
+  for(int i = 0; i < rowsNumber*columnsNumber; ++i)
+    {
+      result.data.push_back(inputData.first.data[i] + inputData.second.data[i]);
+    }
+
+  return result;
+}
+
+void readToMatrix(std::istream& inputStream, Matrix& matrix, int numOfElements)
+{
+  for(int i = 0; i < numOfElements; ++i)
+    {
+      float matrixElement = 0.f;
+      inputStream >> matrixElement;
+
+      matrix.data.push_back(matrixElement);
+    }
+}
+
+MatrixSumInput MatrixSumTester::readSingleInput(std::istream& inputStream)
+{
+  int rowsNumber = 0, columnsNumber = 0;
+
+  inputStream >> rowsNumber >> columnsNumber;
+
+  MatrixSumInput input;
+
+  input.first.rowsNumber = rowsNumber;
+  input.second.rowsNumber = rowsNumber;
+  input.first.columnsNumber = columnsNumber;
+  input.second.columnsNumber = columnsNumber;
+
+  readToMatrix(inputStream, input.first, rowsNumber*columnsNumber);
+  readToMatrix(inputStream, input.second, rowsNumber*columnsNumber);
+
+  return input;
+}
+
 
 
 int main(int /*argc*/, char* /*argv*/[])

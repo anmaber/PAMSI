@@ -58,6 +58,15 @@ struct MatrixSumInput
     Matrix second;
 };
 
+class MatrixSumTester: public Tester<Matrix, MatrixSumInput>
+{
+protected:
+  Matrix runAlgorithm(const MatrixSumInput& inputData) override;
+  MatrixSumInput readSingleInput(std::istream& inputStream) override;
+};
+
+
+
 int main(int /*argc*/, char* /*argv*/[])
 {
     /*

@@ -5,11 +5,15 @@ add_compile_options(-c
                     -Wall
                     -Wextra
                     -pedantic
-		    -Werror
                     -std=c++14
                     -g)
 
+set(SRC_LIST
+	list.hpp
+	node.hpp
+        main.cpp
+)
 
-
-include_directories(inc)
-add_executable(${PROJECT_NAME} src/main.cpp)
+include_directories(${PROJECT_SOURCE_DIR})
+add_library(${PROJECT_NAME}-lib ${SRC_LIST})
+add_executable(${PROJECT_NAME} main.cpp)

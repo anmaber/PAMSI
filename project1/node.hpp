@@ -21,7 +21,4 @@ Node<Type>::Node(const Type v)
 
 template<class Type>
 Node<Type>::~Node()
-{
-    delete next;
-    delete previous;
-}
+{}

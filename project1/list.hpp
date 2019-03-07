@@ -45,11 +45,15 @@ void List<Type>::push_back(const Type &newElement)
     {
         head=node;
         tail=node;
+        std::cout<<"ok";
+
     }
     else
     {
-        node->previous = tail;
+        std::cout<<"\t not ok";
+
         tail->next = node;
+        node->previous = tail;
         tail = node;
     }
 

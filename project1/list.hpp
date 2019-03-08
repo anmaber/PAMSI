@@ -16,7 +16,7 @@ public:
     List();
     ~List();
     void push_back(const Type& newElement);
-
+    void push_front(const Type& newElement);
 };
 
 template<class Type>
@@ -45,16 +45,31 @@ void List<Type>::push_back(const Type &newElement)
     {
         head=node;
         tail=node;
-        std::cout<<"ok";
-
     }
     else
     {
-        std::cout<<"\t not ok";
-
         tail->next = node;
         node->previous = tail;
         tail = node;
     }
 
 }
+
+template<class Type>
+void List<Type>::push_front(const Type &newElement)
+{
+    Node<Type>* node = new Node<Type>(newElement);
+
+    if(!head)
+    {
+        head=node;
+        tail=node;
+    }
+    else
+    {
+        head->previous=node;
+        node->next=head;
+        head=node;
+    }
+}
+

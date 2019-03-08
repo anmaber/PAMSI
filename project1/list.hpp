@@ -19,7 +19,7 @@ public:
     void push_back(const Type& newElement);
     void push_front(const Type& newElement);
     Node<Type>* find(const Type& element) const;
-   // void remove(const Type& element);
+    void remove(const Type& element);
 };
 
 template<class Type>
@@ -97,9 +97,36 @@ Node<Type>* List<Type>::find(const Type &element) const
     Node<Type>* current = head;
     while(current->value != element)
     {
-        if(current == tail && current->value != element) return nullptr;
         current=current->next;
+        if(current == tail && current->value != element) return nullptr;
     }
     return current;
+}
+
+template<class Type>
+void List<Type>::remove(const Type &element)
+{
+    Node<Type>* toRemove = find(element);
+    if(toRemove)
+    {
+       if(toRemove == head)
+       {
+           head->next->previous = nullptr;
+           head=head->next;
+           delete toRemove;
+       }
+       else if(toRemove == tail)
+       {
+           tail->previous->next=nullptr;
+           tail=tail->previous;
+           delete toRemove;
+       }
+       else
+       {
+           toRemove->previous->next=toRemove->next;
+           toRemove->next->previous=toRemove->previous;
+           delete toRemove;
+       }
+    }
 }
 

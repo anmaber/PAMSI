@@ -11,6 +11,13 @@ int main()
     list.display();
     list.push_front(5);
     list.display();
+    list.remove(5);
+    list.display();
+    list.remove(3);
+    list.display();
+    list.push_back(6);
+    list.remove(4);
+    list.display();
 
     return 0;
 }

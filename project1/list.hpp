@@ -16,6 +16,7 @@ public:
     List();
     ~List();
     void display() const;
+    void insert(const Type& newElement, int index);
     void push_back(const Type& newElement);
     void push_front(const Type& newElement);
     Node<Type>* find(const Type& element) const;
@@ -24,7 +25,7 @@ public:
 
 template<class Type>
 List<Type>::List()
-     :head(nullptr),
+    :head(nullptr),
       tail(nullptr),
       size(0)
 {}
@@ -52,6 +53,31 @@ void List<Type>::display() const
     }
     std::cout<<std::endl;
 }
+
+template<class Type>
+void List<Type>::insert(const Type &newElement, int index)
+{
+    if(index > size) std::cerr<<"out of range \n";
+    else if(index == 0) push_front(newElement);
+    else if(index == size) push_back(newElement);
+    else
+    {
+        Node<Type>* node = new Node<Type>(newElement);
+        Node<Type>* current = head;
+        for(int i=0; i<index-1; ++i)
+        {
+            current=current->next;
+        }
+
+        current->next->previous = node;
+        node->next = current->next;
+        current->next = node;
+        node->previous = current;
+
+    }
+    size++;
+}
+
 
 template<class Type>
 void List<Type>::push_back(const Type &newElement)
@@ -109,24 +135,25 @@ void List<Type>::remove(const Type &element)
     Node<Type>* toRemove = find(element);
     if(toRemove)
     {
-       if(toRemove == head)
-       {
-           head->next->previous = nullptr;
-           head=head->next;
-           delete toRemove;
-       }
-       else if(toRemove == tail)
-       {
-           tail->previous->next=nullptr;
-           tail=tail->previous;
-           delete toRemove;
-       }
-       else
-       {
-           toRemove->previous->next=toRemove->next;
-           toRemove->next->previous=toRemove->previous;
-           delete toRemove;
-       }
+        if(toRemove == head)
+        {
+            head->next->previous = nullptr;
+            head = head->next;
+            delete toRemove;
+        }
+        else if(toRemove == tail)
+        {
+            tail->previous->next = nullptr;
+            tail = tail->previous;
+            delete toRemove;
+        }
+        else
+        {
+            toRemove->previous->next = toRemove->next;
+            toRemove->next->previous = toRemove->previous;
+            delete toRemove;
+        }
+        size--;
     }
 }
 

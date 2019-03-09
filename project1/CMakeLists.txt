@@ -10,3 +10,6 @@ add_compile_options(-c
 
 include_directories(inc/list)
 add_executable(doubly_linked_list src/list.cpp)
+
+include_directories(inc/stack)
+add_executable(stack src/stack.cpp)

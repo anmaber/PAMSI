@@ -13,6 +13,7 @@ public:
     Stack();
     ~Stack();
     void push(const Type& newElement);
+    Type pop();
     void display() const;
 };
 
@@ -47,6 +48,20 @@ void Stack<Type>::push(const Type &newElement)
 }
 
 template<class Type>
+Type Stack<Type>::pop()
+{
+
+    if(top)
+    {
+        StackNode<Type>* toPop = top;
+        Type value = toPop->value;
+        top=toPop->next;
+        delete toPop;
+        return value;
+    }
+}
+
+template<class Type>
 void Stack<Type>::display() const
 {
     StackNode<Type>* current = top;
@@ -55,4 +70,5 @@ void Stack<Type>::display() const
         std::cout<<current->value<<"\t";
         current = current->next;
     }
+    std::cout<<std::endl;
 }

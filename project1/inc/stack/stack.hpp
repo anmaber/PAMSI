@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #include "stackNode.hpp"
 
 template<class Type>
@@ -11,6 +13,7 @@ public:
     Stack();
     ~Stack();
     void push(const Type& newElement);
+    void display() const;
 };
 
 
@@ -40,5 +43,16 @@ void Stack<Type>::push(const Type &newElement)
     {
         node->next = top;
         top = node;
+    }
+}
+
+template<class Type>
+void Stack<Type>::display() const
+{
+    StackNode<Type>* current = top;
+    while(current)
+    {
+        std::cout<<current->value<<"\t";
+        current = current->next;
     }
 }

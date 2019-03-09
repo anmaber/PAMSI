@@ -13,7 +13,7 @@ int main()
     list[3]=9;
     list.display();
 
-    std::cout<<list[3];
+    std::cout<<list[2];
 
     return 0;
 }

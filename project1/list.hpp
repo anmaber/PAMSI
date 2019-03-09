@@ -21,6 +21,7 @@ public:
     void push_front(const Type& newElement);
     Node<Type>* find(const Type& element) const;
     void remove(const Type& element);
+    Type& operator [] (int index);
 };
 
 template<class Type>
@@ -156,4 +157,20 @@ void List<Type>::remove(const Type &element)
         size--;
     }
 }
+
+template<class Type>
+Type& List<Type>::operator [](int index)
+{
+    if(index >= size || index < 0) std::cerr<<"out of range \n";
+    else
+    {
+        Node<Type>* current = head;
+        for(int i = 0; i < index; ++i)
+        {
+            current=current->next;
+        }
+        return current->value;
+    }
+}
+
 

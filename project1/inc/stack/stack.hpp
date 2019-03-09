@@ -30,3 +30,15 @@ Stack<Type>::~Stack()
         top = next;
     }
 }
+
+template<class Type>
+void Stack<Type>::push(const Type &newElement)
+{
+    StackNode<Type>* node = new StackNode<Type>(newElement);
+    if(!top) top = node;
+    else
+    {
+        node->next = top;
+        top = node;
+    }
+}

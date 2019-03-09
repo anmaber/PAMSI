@@ -11,7 +11,7 @@ public:
 };
 
 template<class Type>
-QueueNode::QueueNode(const Type& v)
+QueueNode<Type>::QueueNode(const Type& v)
     : next(nullptr),
       value(v)
 {}

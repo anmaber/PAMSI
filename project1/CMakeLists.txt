@@ -13,3 +13,6 @@ add_executable(doubly_linked_list src/list.cpp)
 
 include_directories(inc/stack)
 add_executable(stack src/stack.cpp)
+
+include_directories(inc/queue)
+add_executable(queue src/queue.cpp)

@@ -1,5 +1,7 @@
 #include "stack.hpp"
 
+//handle exceptions
+
 int main()
 {
     Stack<int> stack;

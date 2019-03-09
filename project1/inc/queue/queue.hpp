@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #include "queueNode.hpp"
 
 template<class Type>
@@ -12,6 +14,8 @@ class Queue{
     Queue();
     ~Queue();
     void enqueue(const Type& newElement);
+    Type dequeue();
+    void display() const;
 };
 
 template<class Type>
@@ -45,6 +49,32 @@ void Queue<Type>::enqueue(const Type &newElement)
         bottom->next = node;
         bottom = node;
     }
+
+}
+
+template<class Type>
+Type Queue<Type>::dequeue()
+{
+    if(top)
+    {
+        QueueNode<Type>* toDequeue = top;
+        Type value = toDequeue->value;
+        top=top->next;
+        delete toDequeue;
+        return value;
+    }
+}
+
+template<class Type>
+void Queue<Type>::display() const
+{
+    QueueNode<Type>* current = top;
+    while(current)
+    {
+        std::cout<<current->value<<"\t";
+        current = current->next;
+    }
+    std::cout<<std::endl;
 
 }
 

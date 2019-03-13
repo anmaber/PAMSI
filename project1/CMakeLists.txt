@@ -16,3 +16,6 @@ add_executable(stack src/stack.cpp)
 
 include_directories(inc/queue)
 add_executable(queue src/queue.cpp)
+
+include_directories(inc/priority_queue)
+add_executable(priority_queue src/priorityQueue.cpp)

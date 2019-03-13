@@ -10,7 +10,8 @@ int main()
     list.push_back(3);
     //list.insert(9,4);
     list.display();
-    //list[3]=9;
+    //list[1]=9;
+    list[3]=1;
     list.display();
     //fix segmentation fault when use [] more then once
 

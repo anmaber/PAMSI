@@ -1,6 +1,13 @@
 #pragma once
 #include <string>
 
+template<typename keyType>
+int hash(keyType& key)
+{
+    return key % 100;
+}
+
+template <>
 int hash(std::string& key)
 {
     int hash = 0;
@@ -8,16 +15,5 @@ int hash(std::string& key)
     {
         hash+=letter;
     }
-
-    return hash % 100;
+ return hash % 100;
 }
-
-template<typename keyType, typename valType>
-class Map
-{
-
-    valType array[100];
-
-public:
-
-};

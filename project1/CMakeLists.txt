@@ -19,3 +19,6 @@ add_executable(queue src/queue.cpp)
 
 include_directories(inc/priority_queue)
 add_executable(priority_queue src/priorityQueue.cpp)
+
+include_directories(inc/map)
+add_executable(map src/map.cpp)

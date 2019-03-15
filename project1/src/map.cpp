@@ -3,8 +3,8 @@
 
 int main()
 {
-    int hello = 45;
-    std::cout<<hash(hello);
+    Map<std::string,int> map;
+    map.insert("hello",1);
 
     return 0;
 }

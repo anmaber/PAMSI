@@ -2,15 +2,12 @@
 #include <string>
 #include <stdexcept>
 #include <iostream>
+#include <vector>
+#include <type_traits>
+#include <algorithm>
 
 template<typename keyType>
 int hash(const keyType& key)
-{
-    throw std::invalid_argument("you've chosen wrong type of key");
-}
-
-template <>
-int hash(const int& key)
 {
     return key % 100;
 }
@@ -29,23 +26,47 @@ int hash(const std::string& key)
 template<typename keyType, typename valType>
 class Map{
 
-    valType array[100];
+    std::vector<valType> vector;
 
 public:
-   void insert(const keyType& key, const valType& value);
+    Map();
+    bool elementExists(const keyType& key);
+    void insert(const keyType& key, const valType& value);
+    void remove(const keyType& key);
+    valType& operator [] (const keyType& key);
 
 };
+
+
+
+template<typename keyType, typename valType>
+Map<keyType,valType>::Map()
+{
+    if (!(std::is_same<keyType,std::string>::value
+          || std::is_same<keyType,int>::value))
+    {
+        throw std::invalid_argument("you've chosen wrong type of key");
+    }
+    vector.resize(100);
+}
+
 
 template<typename keyType, typename valType>
 void Map<keyType,valType>::insert(const keyType& key, const valType& value)
 {
-    try
-    {
-        array[hash<keyType>(key)] = value;
+    vector[hash<keyType>(key)] = value;
+}
 
-    }
-    catch(std::invalid_argument const& ex)
-    {
-        std::cerr<<"invalid_argument: "<<ex.what()<<std::endl;
-    }
+template<typename keyType, typename valType>
+void Map<keyType,valType>::remove(const keyType &key)
+{
+    auto iter = vector.begin();
+    std::advance(iter,hash<keyType>(key));
+    vector.erase(iter);
+}
+
+template<typename keyType, typename valType>
+valType& Map<keyType,valType>::operator [](const keyType& key)
+{
+   return vector[hash<keyType>(key)];
 }

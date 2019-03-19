@@ -13,6 +13,7 @@ class List
 
 public:
 
+    class Iterator;
     List();
     ~List();
     void display() const;
@@ -22,6 +23,46 @@ public:
     Node<Type>* find(const Type& element) const;
     void remove(const Type& element);
     Type& operator [] (int index);
+    Iterator begin();
+    Iterator end();
+
+    class Iterator
+    {
+
+        Node<Type>* current;
+
+    public:
+        Iterator() :
+            current (nullptr) {}
+
+        Iterator(Node<Type>* node):
+            current(node) {}
+
+        Iterator& operator=(Node<Type>* node)
+        {
+            this->current = node;
+            return *this;
+        }
+
+        Iterator& operator++()
+        {
+            if (current) current = current->next;
+            return *this;
+        }
+
+        Iterator operator++(int)
+        {
+            Iterator iterator = *this;
+            ++*this;
+            return iterator;
+        }
+
+        int operator*()
+        {
+            return current->value;
+        }
+
+    };
 };
 
 template<class Type>
@@ -175,5 +216,18 @@ Type& List<Type>::operator [](int index)
 
 
 }
+
+template<class Type>
+typename List<Type>::Iterator List<Type>::begin()
+{
+    return Iterator(head);
+}
+
+template<class Type>
+typename List<Type>::Iterator List<Type>::end()
+{
+    return Iterator(tail->next);
+}
+
 
 

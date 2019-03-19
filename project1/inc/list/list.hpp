@@ -2,6 +2,7 @@
 
 #include "node.hpp"
 #include <iostream>
+#include <type_traits>
 
 template<class Type>
 class List
@@ -13,7 +14,12 @@ class List
 
 public:
 
-    class Iterator;
+    template<bool isConst>
+    class MyIterator;
+
+    using Iterator = MyIterator<false>;
+    using ConstIterator = MyIterator<true>;
+
     List();
     ~List();
     void display() const;
@@ -23,41 +29,64 @@ public:
     Node<Type>* find(const Type& element) const;
     void remove(const Type& element);
     Type& operator [] (int index);
+
     Iterator begin();
     Iterator end();
+    ConstIterator cbegin() const;
+    ConstIterator cend() const;
 
-    class Iterator
+
+    template<bool isConst = false>
+    struct MyIterator
     {
 
         Node<Type>* current;
+        using iterator_category = std::forward_iterator_tag;
+        using value_type = Type;
+        using difference_type = std::ptrdiff_t;
 
-    public:
-        Iterator() :
+        using reference = typename std::conditional_t< isConst, Type const &, Type & >;
+        // using pointer = typename std::conditional_t< isConst, Type const *, Type * >;
+        MyIterator() :
             current (nullptr) {}
 
-        Iterator(Node<Type>* node):
+        MyIterator(Node<Type>* node):
             current(node) {}
 
-        Iterator& operator=(Node<Type>* node)
+        MyIterator& operator=(const MyIterator& i) = default;
+
+
+        template<bool wasConst, class = std::enable_if_t<isConst && !wasConst>>
+        MyIterator& operator=(const MyIterator<wasConst>& rhs)
         {
-            this->current = node;
+            current = rhs.current;
             return *this;
         }
 
-        Iterator& operator++()
+
+        MyIterator& operator++()
         {
             if (current) current = current->next;
             return *this;
         }
 
-        Iterator operator++(int)
+        MyIterator operator++(int)
         {
-            Iterator iterator = *this;
+            MyIterator iterator = *this;
             ++*this;
             return iterator;
         }
 
-        int operator*()
+        template< bool _isConst = isConst >
+        std::enable_if_t< _isConst, reference >
+        operator*() const
+        {
+            return current->value;
+        }
+
+        template< bool _isConst = isConst >
+        std::enable_if_t< !_isConst, reference >
+        operator*()
         {
             return current->value;
         }
@@ -212,9 +241,6 @@ Type& List<Type>::operator [](int index)
         }
         return current->value;
     }
-
-
-
 }
 
 template<class Type>
@@ -229,5 +255,14 @@ typename List<Type>::Iterator List<Type>::end()
     return Iterator(tail->next);
 }
 
+template<class Type>
+typename List<Type>::ConstIterator List<Type>::cbegin() const
+{
+    return ConstIterator(head);
+}
 
-
+template<class Type>
+typename List<Type>::ConstIterator List<Type>::cend() const
+{
+    return ConstIterator(tail->next);
+}

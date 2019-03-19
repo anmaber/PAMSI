@@ -8,12 +8,17 @@ int main()
     list.display();
     list.push_front(1);
 
-    List<int>::Iterator it = list.begin();
+    List<int>::Iterator it;
+    List<int>::ConstIterator cit;
+    it=list.begin();
+    cit=it;
+    //*it=49;
     std::cout<<"pod iteratorem:"<<*it<<std::endl;
 
     it++;
     std::cout<<"pod iteratorem:"<<*it<<std::endl;
-
+    //*it=7;
+std::cout<<"pod iteratorem:"<<*it<<std::endl;
     list.display();
     list.push_back(3);
     //list.insert(9,4);

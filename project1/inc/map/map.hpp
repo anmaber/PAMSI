@@ -30,7 +30,6 @@ class Map{
 
 public:
     Map();
-    bool elementExists(const keyType& key);
     void insert(const keyType& key, const valType& value);
     void remove(const keyType& key);
     valType& operator [] (const keyType& key);

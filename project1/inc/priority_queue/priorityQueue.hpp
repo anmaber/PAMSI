@@ -89,4 +89,5 @@ Type PriorityQueue<Type>::dequeue()
         delete toDequeue;
         return value;
     }
+    else throw std::out_of_range("Queue is empty, nothing left to dequeue");
 }

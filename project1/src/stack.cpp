@@ -39,6 +39,15 @@ int main()
     stack.push(1);
     stack.push(2);
     stack.push(3);
+
+    std::cout<<"STL: \n";
+    std::cout<<stack.top()<<"\t";
+    stack.pop();
+
+    std::cout<<stack.top()<<"\t";
+    stack.pop();
+
+    std::cout<<stack.top()<<std::endl;
     stack.pop();
 
 

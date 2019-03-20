@@ -38,9 +38,16 @@ int main()
     queue.push(1);
     queue.push(2);
     queue.push(3);
-    queue.pop();
+
+    std::cout<<"STL: \n";
+    std::cout<<queue.front()<<"\t";
     queue.pop();
 
+    std::cout<<queue.front()<<"\t";
+    queue.pop();
+
+    std::cout<<queue.front()<<std::endl;
+    queue.pop();
 
 
     return 0;

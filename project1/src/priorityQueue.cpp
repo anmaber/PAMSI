@@ -1,4 +1,13 @@
 #include "priorityQueue.hpp"
+#include <queue>
+
+template<typename Type> void print_queue(Type& q) {
+    while(!q.empty()) {
+        std::cout << q.top() << " ";
+        q.pop();
+    }
+    std::cout << '\n';
+}
 
 int main()
 {
@@ -37,10 +46,22 @@ int main()
     {
         std::cerr<<"out_of_range: "<<ex.what()<<std::endl;
     }
+    /*** STL PRIORITY_QUEUE ***/
 
+    std::priority_queue<int> queue;
+    queue.push(4);
+    queue.push(1);
+    queue.push(2);
 
+    std::cout<<"STL: \n";
+    std::cout<<queue.top()<<"\t";
+    queue.pop();
 
+    std::cout<<queue.top()<<"\t";
+    queue.pop();
 
+    std::cout<<queue.top()<<std::endl;
+    queue.pop();
 
     return 0;
 }

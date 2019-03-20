@@ -2,6 +2,7 @@
 
 #include "node.hpp"
 #include <iostream>
+#include <stdexcept>
 #include <type_traits>
 
 template<class Type>
@@ -123,7 +124,7 @@ List<Type>::~List()
 template<class Type>
 void List<Type>::insert(const Type &newElement, int index)
 {
-    if(index > size) std::cerr<<"out of range \n";
+    if(index > size || index < 0) throw std::out_of_range("You want to get access to element that is out of range");
     else if(index == 0) push_front(newElement);
     else if(index == size) push_back(newElement);
     else
@@ -226,7 +227,7 @@ void List<Type>::remove(const Type &element)
 template<class Type>
 Type& List<Type>::operator [](int index)
 {
-    if(index >= size || index < 0) std::cerr<<"out of range \n";
+    if(index >= size || index < 0) throw std::out_of_range("You want to get access to element that is out of range");
     else
     {
         Node<Type>* current = head;

@@ -21,36 +21,31 @@ int main()
         std::cout<<"real output: ";
 
         for(auto it = list.cbegin(); it!=list.cend(); ++it)
-        {
             std::cout<<*it<<"  ";
-        }
+
 
         std::cout<<"\n\nCHECKS IF [] OPERATOR WORKS \n";
         std::cout<<"list[3] = 0;"<<std::endl;
         list[3] = 0;
         for(auto it = list.cbegin(); it!=list.cend(); ++it)
-        {
             std::cout<<*it<<"  ";
-        }
+
         std::cout<<"\nlist[1] = "<<list[1]<<std::endl;
 
         std::cout<<"\n\nCHECKS IF REMOVE METHOD WORKS \n";
         list.remove(2);
         for(auto it = list.cbegin(); it!=list.cend(); ++it)
-        {
             std::cout<<*it<<"  ";
-        }
+
 
         std::cout<<"\n\nCHECKS IF ITERATOR WORKS (TO EACH ELEMENT OF COLLECTION SHOULD BE ADDED 2) \n";
         for(auto it =list.begin() ; it != list.end(); ++it)
-        {
             *it+=2;
-        }
+
 
         for(auto it = list.cbegin(); it!=list.cend(); ++it)
-        {
             std::cout<<*it<<"  ";
-        }
+
     }
     catch(std::out_of_range const& ex)
     {
@@ -77,9 +72,8 @@ int main()
     std::cout<<"\n\nCHECKS HOW ITERATOR WORKS (TO EACH ELEMENT OF COLLECTION SHOULD BE ADDED 2) \n";
 
     for(auto it =list.begin() ; it != list.end(); ++it)
-    {
         *it+=2;
-    }
+
     std::copy(list.begin(), list.end(), std::ostream_iterator<int>(std::cout, " "));
 
     std::cout<<"\n\nCHECKS HOE REMOVE METHOD WORKS \n";

@@ -1,14 +1,6 @@
 #include "priorityQueue.hpp"
 #include <queue>
 
-template<typename Type> void print_queue(Type& q) {
-    while(!q.empty()) {
-        std::cout << q.top() << " ";
-        q.pop();
-    }
-    std::cout << '\n';
-}
-
 int main()
 {
     /***    MY PRIORITY QUEUE ***/

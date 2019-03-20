@@ -41,10 +41,11 @@ public:
     {
 
         Node<Type>* current;
+        /*
         using iterator_category = std::forward_iterator_tag;
         using value_type = Type;
         using difference_type = std::ptrdiff_t;
-
+        */
         using reference = typename std::conditional_t< isConst, Type const &, Type & >;
         // using pointer = typename std::conditional_t< isConst, Type const *, Type * >;
         MyIterator() :

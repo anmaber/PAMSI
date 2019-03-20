@@ -1,7 +1,9 @@
 #include "queue.hpp"
+#include <queue>
 
 int main()
 {
+    /***MY QUEUE ***/
     try{
         Queue<int> queue;
         queue.enqueue(1);
@@ -30,6 +32,15 @@ int main()
     {
         std::cerr<<"out_of_range: "<<ex.what()<<std::endl;
     }
+
+    /*** STL QUEUE ***/
+    std::queue<int> queue;
+    queue.push(1);
+    queue.push(2);
+    queue.push(3);
+    queue.pop();
+    queue.pop();
+
 
 
     return 0;

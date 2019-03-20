@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <exception>
 
 #include "stackNode.hpp"
 
@@ -59,6 +60,7 @@ Type Stack<Type>::pop()
         delete toPop;
         return value;
     }
+    else throw std::out_of_range("Stack is empty, nothing left to pop");
 }
 
 template<class Type>

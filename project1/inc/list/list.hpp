@@ -22,7 +22,6 @@ public:
 
     List();
     ~List();
-    void display() const;
     void insert(const Type& newElement, int index);
     void push_back(const Type& newElement);
     void push_front(const Type& newElement);
@@ -53,28 +52,38 @@ public:
         MyIterator(Node<Type>* node):
             current(node) {}
 
-        MyIterator& operator=(const MyIterator& i) = default;
+        MyIterator& operator = (const MyIterator& i) = default;
 
 
         template<bool wasConst, class = std::enable_if_t<isConst && !wasConst>>
-        MyIterator& operator=(const MyIterator<wasConst>& rhs)
+        MyIterator& operator = (const MyIterator<wasConst>& rhs)
         {
             current = rhs.current;
             return *this;
         }
 
 
-        MyIterator& operator++()
+        MyIterator& operator ++()
         {
             if (current) current = current->next;
             return *this;
         }
 
-        MyIterator operator++(int)
+        MyIterator operator ++(int)
         {
             MyIterator iterator = *this;
             ++*this;
             return iterator;
+        }
+
+        bool operator != ( MyIterator const & _other ) const
+        {
+            return current != _other.current;
+        }
+
+        bool operator == ( MyIterator const & _other ) const
+        {
+            return !( *this != _other );
         }
 
         template< bool _isConst = isConst >
@@ -110,19 +119,6 @@ List<Type>::~List()
         delete head;
         head = next;
     }
-}
-
-template<class Type>
-void List<Type>::display() const
-{
-    Node<Type>* current = head;
-
-    while(current)
-    {
-        std::cout<<current->value<<"\t";
-        current=current->next;
-    }
-    std::cout<<std::endl;
 }
 
 template<class Type>

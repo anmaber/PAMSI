@@ -99,7 +99,6 @@ public:
         {
             return current->value;
         }
-
     };
 };
 

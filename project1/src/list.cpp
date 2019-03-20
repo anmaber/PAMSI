@@ -2,51 +2,50 @@
 
 int main()
 {
+    /********  MOJA LISTA **********/
+
     List<int> list;
+
+    std::cout<<"CHECKS IF INSERT METHODS, CONST ITERATOR WORKS \n \n";
     list.push_back(4);
-    list.push_front(1);
     list.push_back(3);
+    list.push_front(1);
+    list.push_front(2);
+    list.insert(9,2);
+    std::cout<<"output should be: 2 1 9 4 3 \n";
+    std::cout<<"real output: ";
 
-    List<int>::Iterator it,it2;
+    for(List<int>::ConstIterator it = list.cbegin(); it!=list.cend(); ++it)
+    {
+        std::cout<<*it<<"  ";
+    }
 
-    it=list.begin();
-    it2=list.end();
-   std::cout<<"1: "<<*it<<std::endl;
-   ++it;
-   std::cout<<"4: "<<*it<<std::endl;
-   ++it;
-   std::cout<<"3: "<<*it<<std::endl;
+    std::cout<<"\n\nCHECKS IF [] OPERATOR WORKS \n";
+    std::cout<<"list[3] = 0;"<<std::endl;
+    list[3] = 0;
+    for(List<int>::ConstIterator it = list.cbegin(); it!=list.cend(); ++it)
+    {
+        std::cout<<*it<<"  ";
+    }
+     std::cout<<"\nlist[1] = "<<list[1]<<std::endl;
 
+     std::cout<<"\n\nCHECKS IF REMOVE METHOD WORKS \n";
+     list.remove(2);
+     for(List<int>::ConstIterator it = list.cbegin(); it!=list.cend(); ++it)
+     {
+         std::cout<<*it<<"  ";
+     }
 
+ std::cout<<"\n\nCHECKS IF ITERATOR WORKS (TO EACH ELEMENT OF COLLECTION SHOULD BE ADDED 2) \n";
+    for(List<int>::Iterator it =list.begin() ; it != list.end(); ++it)
+    {
+        *it+=2;
+    }
 
-   for(List<int>::Iterator it =list.begin();it!=list.end();++it)
-   {
-       *it+=2;
-   }
-   for(List<int>::ConstIterator it =list.cbegin();it!=list.cend();++it)
-   {
-       std::cout<<*it<<"\t";
-   }
-
-
-
-    //*it=49;
-    //std::cout<<"pod iteratorem:"<<*it<<std::endl;
-
-    //it++;
-    //std::cout<<"pod iteratorem:"<<*it<<std::endl;
-    //*it=7;
-//std::cout<<"pod iteratorem:"<<*it<<std::endl;
-    //list.display();
-    //list.push_back(3);
-    //list.insert(9,4);
-    //list.display();
-    //list[1]=9;
-    //list[3]=1;
-   // list.display();
-    //fix segmentation fault when use [] more then once
-
-    //std::cout<<list[2];
+    for(List<int>::ConstIterator it = list.cbegin(); it!=list.cend(); ++it)
+    {
+        std::cout<<*it<<"  ";
+    }
 
     return 0;
 }

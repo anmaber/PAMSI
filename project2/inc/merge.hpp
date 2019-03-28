@@ -1,7 +1,7 @@
 #pragma once
 
 template <typename arrayType>
-int merge(arrayType A[], int begin, int mid, int end)
+void merge(arrayType A[], int begin, int mid, int end)
 {
     int leftSize = mid - begin + 1;
     int rightSize = end - mid;
@@ -52,7 +52,7 @@ void mergeSort(arrayType A[], int begin, int end)
 {
     if (begin < end)
     {
-        int mid = begin + (end - left)/2;
+        int mid = begin + (end - begin)/2;
 
         mergeSort(A, begin, mid);
         mergeSort(A, mid + 1, end);

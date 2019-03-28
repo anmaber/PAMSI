@@ -45,3 +45,18 @@ int merge(arrayType A[], int begin, int mid, int end)
         k++;
     }
 }
+
+
+template <typename arrayType>
+void mergeSort(arrayType A[], int begin, int end)
+{
+    if (begin < end)
+    {
+        int mid = begin + (end - left)/2;
+
+        mergeSort(A, begin, mid);
+        mergeSort(A, mid + 1, end);
+
+        merge(A, begin, mid, end);
+    }
+}

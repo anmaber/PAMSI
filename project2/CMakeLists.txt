@@ -8,4 +8,4 @@ add_compile_options(-c
                     -g)
 
 include_directories(inc)
-add_executable(mergeSort src/merge.cpp)
+add_executable(sort src/main.cpp)

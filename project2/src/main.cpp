@@ -31,5 +31,18 @@ int main()
     std::cout<<std::endl;
 
 
+    std::cout<<"HEAP:"<<std::endl;
+
+    int array3[] = {9,2,4,7,3,1,0,128};
+    int arraySize3 = sizeof(array3)/sizeof(array2[0]);
+
+    for(int i = 0; i<arraySize3 ; ++i) std::cout<< array3[i] << "\t";
+    std::cout<<std::endl;
+
+    quickSort(array3, 0, arraySize3 - 1);
+
+    for(int i = 0; i<arraySize3 ; ++i) std::cout<< array3[i] << "\t";
+    std::cout<<std::endl;
+
     return 0;
 }

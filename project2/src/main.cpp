@@ -45,8 +45,9 @@ int main()
     for(int i = 0; i<arraySize3 ; ++i) std::cout<< array3[i] << "\t";
     std::cout<<std::endl;
 */
-    int size =v.size();
-    heapSort(v,size);
+
+    int size = v.size();
+    quickSort(v,0,size-1);
 
     for(unsigned int i = 0; i<v.size() ; ++i) std::cout<< v[i] << "\t";
     std::cout<<std::endl;

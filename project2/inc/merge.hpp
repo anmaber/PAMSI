@@ -1,22 +1,25 @@
 #pragma once
+#include <vector>
 
 template <typename arrayType>
-void merge(arrayType A[], int begin, int mid, int end)
+void merge(std::vector<arrayType>& A, int begin, int mid, int end)
 {
     int leftSize = mid - begin + 1;
     int rightSize = end - mid;
 
-    arrayType left[leftSize];
-    arrayType right[rightSize];
+    std::vector<arrayType> left;
+    left.resize(leftSize);
+    std::vector<arrayType> right;
+    right.resize(rightSize);
 
-    for(int i = 0; i < leftSize; ++i) left[i] = A[begin+i];
-    for(int i = 0; i < rightSize; ++i) right[i] = A[mid + 1 + i];
+    for(unsigned int i = 0; i < left.size(); ++i) left[i] = A[begin+i];
+    for(unsigned int i = 0; i < right.size(); ++i) right[i] = A[mid + 1 + i];
 
-    int i = 0;
-    int j = 0;
-    int k = begin;
+    unsigned int i = 0;
+    unsigned int j = 0;
+    unsigned int k = begin;
 
-    while (i < leftSize && j < rightSize)
+    while (i < left.size() && j < right.size())
     {
         if (left[i] <= right[j])
         {
@@ -31,14 +34,14 @@ void merge(arrayType A[], int begin, int mid, int end)
         k++;
     }
 
-    while (i < leftSize)
+    while (i < left.size())
     {
         A[k] = left[i];
         i++;
         k++;
     }
 
-    while (j < rightSize)
+    while (j < right.size())
     {
         A[k] = right[j];
         j++;
@@ -48,7 +51,7 @@ void merge(arrayType A[], int begin, int mid, int end)
 
 
 template <typename arrayType>
-void mergeSort(arrayType A[], int begin, int end)
+void mergeSort(std::vector<arrayType>& A, int begin, int end)
 {
     if (begin < end)
     {

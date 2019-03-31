@@ -8,19 +8,19 @@
 int main()
 {
 
-    std::cout<<"MERGE:"<<std::endl;
+   // std::cout<<"MERGE:"<<std::endl;
 
     std::vector<int> v;
     v = generateWorstCaseArray<int>(10);
 
-
+/*
     for(unsigned int i = 0; i<v.size() ; ++i) std::cout<< v[i] << "\t";
     std::cout<<std::endl;
 
     mergeSort(v, 0, v.size() - 1);
 
     for(unsigned int i = 0; i<v.size() ; ++i) std::cout<< v[i] << "\t";
-    std::cout<<std::endl;
+    std::cout<<std::endl;*/
 
 /*
     std::cout<<"QUICK:"<<std::endl;
@@ -42,12 +42,15 @@ int main()
 
     int array3[] = {9,2,4,7,3,1,0,128};
     int arraySize3 = sizeof(array3)/sizeof(array3[0]);
-
     for(int i = 0; i<arraySize3 ; ++i) std::cout<< array3[i] << "\t";
     std::cout<<std::endl;
+*/
+    int size =v.size();
+    heapSort(v,size);
 
-    heapSort(array3,arraySize3 - 1);
-
+    for(unsigned int i = 0; i<v.size() ; ++i) std::cout<< v[i] << "\t";
+    std::cout<<std::endl;
+/*
     for(int i = 0; i<arraySize3 ; ++i) std::cout<< array3[i] << "\t";
     std::cout<<std::endl;
 */

@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <cstdlib>
-
+/*
 int choosePivot(int left , int right)
 {
     div_t result = div((left+(right-1)),2);
@@ -9,14 +9,34 @@ int choosePivot(int left , int right)
     return result.quot;
 }
 
-
+*/
 template <typename Type>
-int partition (std::vector<Type>& v,int left,int right)
+int partition (Type* v,int left,int right)
 {
+    int pivot = v[right];
+    int m = left;
+
+
+    for(int i =left; i <= right -1;++i)
+    {
+        if(v[i] <= pivot)
+        {
+            std::swap(v[i],v[m]);
+            m++;
+        }
+
+    }
+    std::swap(v[right],v[m]);
+
+    return m;
+    /*
     int centerElement = choosePivot(left, right);
     int Pivot = v[centerElement];
 
-    std::swap(v[centerElement],v[right]);
+    Type tmp = v[right];
+    v[right]= v[centerElement];
+    v[centerElement] = tmp;
+    //std::swap(v[centerElement],v[right]);
 
     int actualPosition = left;
 
@@ -24,18 +44,25 @@ int partition (std::vector<Type>& v,int left,int right)
     {
         if(v[i]<Pivot)
         {
-            std::swap(v[actualPosition],v[i]);
+            //std::swap(v[actualPosition],v[i]);
+            Type tmp = v[i];
+            v[i]= v[actualPosition];
+            v[actualPosition] = tmp;
             actualPosition++;
         }
     }
 
-    std::swap(v[actualPosition],v[right]);
+    //std::swap(v[actualPosition],v[right]);
+    Type tmp2 = v[right];
+    v[right]= v[actualPosition];
+    v[actualPosition] = tmp2;
 
     return actualPosition;
+    */
 }
 
 template <typename Type>
-void quickSort (std::vector<Type>& v,int left,int right)
+void quickSort (Type* v,int left,int right)
 {
     if(left<right)
     {

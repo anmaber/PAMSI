@@ -1,6 +1,5 @@
 #include "tester.hpp"
 
-
 int main()
 {
     Tester<int> t;

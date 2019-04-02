@@ -48,7 +48,7 @@ template<typename Type>
 int Tester<Type>::duration()
 {
     auto start = std::chrono::high_resolution_clock::now();
-    mergeSort(_data,0,_data.size()-1);
+    quickSort(_data,0,_data.size()-1);
     auto end = std::chrono::high_resolution_clock::now();
 
     if(! std::is_sorted(_data.begin(),_data.end())) throw std::runtime_error("chih");
@@ -72,7 +72,7 @@ Tester<Type>::Tester()
         _size.push_back(pow(10,i));
     }
 
-    _file.open("merge.csv", std::ios::out);
+    _file.open("quick.csv", std::ios::out);
 }
 
 template<typename Type>

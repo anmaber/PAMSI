@@ -1,35 +1,47 @@
 #pragma once
 #include <vector>
+#include <cstdlib>
 
-template <typename Type>
-int partition (std::vector<Type>& v, int left, int right)
+int choosePivot(int left , int right)
 {
-    int pivot = v[right];
-    int i = (left - 1);
+    div_t result = div((left+(right-1)),2);
 
-    for (int j = left; j <= right - 1; j++)
-    {
-        if (v[j] <= pivot)
-        {
-            i++;
-            std::swap(v[i],v[j]);
-        }
-    }
-    std::swap(v[i+1],v[right]);
-
-    return (i + 1);
+    return result.quot;
 }
 
 
 template <typename Type>
-void quickSort(std::vector<Type>& v, int left, int right)
+int partition (std::vector<Type>& v,int left,int right)
 {
-    int pivot =0;
-    if(left < right)
-    {
-        pivot = partition(v,left,right);
+    int centerElement = choosePivot(left, right);
+    int Pivot = v[centerElement];
 
-        quickSort(v, left, pivot - 1);
-        quickSort(v, pivot + 1, right);
+    std::swap(v[centerElement],v[right]);
+
+    int actualPosition = left;
+
+    for(int i=left;i<=right-1;i++)
+    {
+        if(v[i]<Pivot)
+        {
+            std::swap(v[actualPosition],v[i]);
+            actualPosition++;
+        }
+    }
+
+    std::swap(v[actualPosition],v[right]);
+
+    return actualPosition;
+}
+
+template <typename Type>
+void quickSort (std::vector<Type>& v,int left,int right)
+{
+    if(left<right)
+    {
+        int tmp = partition(v, left, right);
+
+        quickSort(v,left,tmp-1);
+        quickSort(v,tmp+1,right);
     }
 }

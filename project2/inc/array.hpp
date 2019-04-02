@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdlib>
 
 template<typename Type>
 struct Array

@@ -12,9 +12,6 @@
 #include <cmath>
 #include <initializer_list>
 
-
-
-
 template<typename Type>
 class Tester
 {
@@ -35,9 +32,9 @@ template<typename Type>
 int Tester<Type>::duration(Type *array, int arraySize)
 {
     auto start = std::chrono::high_resolution_clock::now();
-    quickSort(array,0,arraySize-1);
-    //mergeSort(_data,0,_data.size()-1);
-    //heapSort(_data,_data.size());
+    //quickSort(array,0,arraySize-1);
+    //mergeSort(array,0,arraySize-1);
+    heapSort(array,arraySize);
     auto end = std::chrono::high_resolution_clock::now();
 
     auto duration =std::chrono::duration_cast<std::chrono::microseconds>(end - start);
@@ -54,7 +51,6 @@ void Tester<Type>::writeToFile(int size, int percentage, auto duration)
 template<typename Type>
 Tester<Type>::Tester()
 {
-
     for(int i = 2; i <= 6 ; ++i)
     {
         _size.push_back(pow(10,i));
@@ -67,16 +63,15 @@ Tester<Type>::Tester()
     _percentage.push_back(95);
     _percentage.push_back(99);
 
-
-    _file.open("quick.csv", std::ios::out);
+    //_file.open("quick.csv", std::ios::out);
     //_file.open("merge.csv", std::ios::out);
-    //_file.open("heap.csv", std::ios::out);
+    _file.open("heap.csv", std::ios::out);
 }
 
 template<typename Type>
 void Tester<Type>::test()
-{
-    _file<< "percentage sorted;size; time \n";
+{    
+    _file<< "size; percentage sorted; time \n";
     for(int p : _percentage)
     {
         for(int s : _size)
@@ -84,6 +79,5 @@ void Tester<Type>::test()
             Array<Type> a(s,p);
             writeToFile(s,p,duration(a._data,s));
         }
-
     }
 }

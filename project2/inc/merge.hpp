@@ -1,65 +1,66 @@
 #pragma once
 #include <vector>
 
-template <typename arrayType>
-void merge(std::vector<arrayType>& A, int begin, int mid, int end)
+template <typename Type>
+void merge(Type* array, int begin, int mid, int end)
 {
     int leftSize = mid - begin + 1;
     int rightSize = end - mid;
 
-    std::vector<arrayType> left;
-    left.resize(leftSize);
-    std::vector<arrayType> right;
-    right.resize(rightSize);
+    Type* left = new Type[leftSize];
+    Type* right = new Type[rightSize];
 
-    for(unsigned int i = 0; i < left.size(); ++i) left[i] = A[begin+i];
-    for(unsigned int i = 0; i < right.size(); ++i) right[i] = A[mid + 1 + i];
+    for(int i = 0; i < leftSize; ++i) left[i] = array[begin+i];
+    for(int i = 0; i < rightSize; ++i) right[i] = array[mid + 1 + i];
 
-    unsigned int i = 0;
-    unsigned int j = 0;
-    unsigned int k = begin;
+    int i = 0;
+    int j = 0;
+    int k = begin;
 
-    while (i < left.size() && j < right.size())
+    while (i < leftSize && j < rightSize)
     {
         if (left[i] <= right[j])
         {
-            A[k] = left[i];
+            array[k] = left[i];
             i++;
         }
         else
         {
-            A[k] = right[j];
+            array[k] = right[j];
             j++;
         }
         k++;
     }
 
-    while (i < left.size())
+    while (i < leftSize)
     {
-        A[k] = left[i];
+        array[k] = left[i];
         i++;
         k++;
     }
 
-    while (j < right.size())
+    while (j < rightSize)
     {
-        A[k] = right[j];
+        array[k] = right[j];
         j++;
         k++;
     }
+
+    delete[] left;
+    delete[] right;
 }
 
 
-template <typename arrayType>
-void mergeSort(std::vector<arrayType>& A, int begin, int end)
+template <typename Type>
+void mergeSort(Type* array, int begin, int end)
 {
     if (begin < end)
     {
         int mid = begin + (end - begin)/2;
 
-        mergeSort(A, begin, mid);
-        mergeSort(A, mid + 1, end);
+        mergeSort(array, begin, mid);
+        mergeSort(array, mid + 1, end);
 
-        merge(A, begin, mid, end);
+        merge(array, begin, mid, end);
     }
 }

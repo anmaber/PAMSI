@@ -24,9 +24,10 @@ int partition (std::vector<Type>& v, int left, int right)
 template <typename Type>
 void quickSort(std::vector<Type>& v, int left, int right)
 {
+    int pivot =0;
     if(left < right)
     {
-        int pivot = partition(v,left,right);
+        pivot = partition(v,left,right);
 
         quickSort(v, left, pivot - 1);
         quickSort(v, pivot + 1, right);

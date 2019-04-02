@@ -1,19 +1,37 @@
-#include "merge.hpp"
-#include "quick.hpp"
-#include "heap.hpp"
-#include "random.hpp"
-#include <iostream>
-#include <vector>
+#include "tester.hpp"
+
 
 int main()
 {
+    Tester<int> t;
+    t.test();
 
-   // std::cout<<"MERGE:"<<std::endl;
-
-    std::vector<int> v;
-    v = generateWorstCaseArray<int>(10);
 
 /*
+    std::ofstream file;
+    file.open("heap.csv", std::ios::out);
+    std::vector<int> size = {100,1000,10000,100000,1000000};
+
+
+    for(auto s: size)
+    {
+        std::vector<int> v;
+        v = generateRandomArray<int>(s);
+
+        auto start = std::chrono::high_resolution_clock::now();
+        heapSort(v,v.size());
+        auto end = std::chrono::high_resolution_clock::now();
+
+        if(! std::is_sorted(v.begin(),v.end())) throw std::runtime_error("chih");
+        auto duration =std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+        file << s << ";" << duration.count() << std::endl;
+
+
+}
+*/
+    // std::cout<<"MERGE:"<<std::endl;
+
+    /*
     for(unsigned int i = 0; i<v.size() ; ++i) std::cout<< v[i] << "\t";
     std::cout<<std::endl;
 
@@ -22,7 +40,7 @@ int main()
     for(unsigned int i = 0; i<v.size() ; ++i) std::cout<< v[i] << "\t";
     std::cout<<std::endl;*/
 
-/*
+    /*
     std::cout<<"QUICK:"<<std::endl;
 
     int array2[] = {9,2,4,7,3,1,0,128};
@@ -37,7 +55,7 @@ int main()
     std::cout<<std::endl;
     */
 
-/*
+    /*
     std::cout<<"HEAP:"<<std::endl;
 
     int array3[] = {9,2,4,7,3,1,0,128};
@@ -45,13 +63,12 @@ int main()
     for(int i = 0; i<arraySize3 ; ++i) std::cout<< array3[i] << "\t";
     std::cout<<std::endl;
 */
-
+    /*
     int size = v.size();
     quickSort(v,0,size-1);
 
     for(unsigned int i = 0; i<v.size() ; ++i) std::cout<< v[i] << "\t";
     std::cout<<std::endl;
-/*
     for(int i = 0; i<arraySize3 ; ++i) std::cout<< array3[i] << "\t";
     std::cout<<std::endl;
 */

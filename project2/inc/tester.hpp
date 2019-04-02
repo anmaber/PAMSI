@@ -2,6 +2,7 @@
 #include "merge.hpp"
 #include "quick.hpp"
 #include "heap.hpp"
+#include "array.hpp"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -11,57 +12,30 @@
 #include <cmath>
 #include <initializer_list>
 
-
-
-
 template<typename Type>
 class Tester
 {
     std::vector<int> _size;
     std::vector<int> _percentage;
-    std::vector<Type> _data;
     std::ofstream _file;
-    void generateRandom(int size, int percentageSorted);
-    int duration();
-    void writeToFile(int size, int percentage, int duration);
+    int duration(Type* array,int arraySize);
+    void writeToFile(int size, int percentage, auto duration);
 
 public:
 
     Tester();
-    bool test();
+    void test();
 };
 
-template<typename Type>
-void Tester<Type>::generateRandom(int size, int percentageSorted)
-{
-    if(!_data.empty()) _data.clear();
-    std::srand(time(NULL));
-    int numOfData = size*percentageSorted*0.01;
-    std::generate_n(std::back_inserter(_data),numOfData,[n=0]()mutable {return n++;});
-    std::generate_n(std::back_inserter(_data),size - numOfData,
-                    [size](){return std::modulus<Type>()( std::rand(), size);});
-}
 
-/*
 template<typename Type>
-void Tester<Type>::generateWorstCase(int size)
-{
-    if(!_data.empty()) _data.clear();
-    std::generate_n(std::back_inserter(_data),size/2,[n=0]()mutable {return n++;});
-    std::generate_n(std::back_inserter(_data),size/2,
-                    [size](){return std::modulus<Type>()( std::rand(), size);});
-}
-*/
-template<typename Type>
-int Tester<Type>::duration()
+int Tester<Type>::duration(Type *array, int arraySize)
 {
     auto start = std::chrono::high_resolution_clock::now();
-    //quickSort(_data,0,_data.size()-1);
-    //mergeSort(_data,0,_data.size()-1);
-    heapSort(_data,_data.size());
+    //quickSort(array,0,arraySize-1);
+    //mergeSort(array,0,arraySize-1);
+    heapSort(array,arraySize);
     auto end = std::chrono::high_resolution_clock::now();
-
-    if(! std::is_sorted(_data.begin(),_data.end())) throw std::runtime_error("chih");
 
     auto duration =std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 
@@ -69,9 +43,9 @@ int Tester<Type>::duration()
 }
 
 template<typename Type>
-void Tester<Type>::writeToFile(int size, int percentage, int duration)
+void Tester<Type>::writeToFile(int size, int percentage, auto duration)
 {
-    _file << size << ";" << percentage << ";" << duration << std::endl;
+    _file << percentage << ";" << size << ";" << duration << std::endl;
 }
 
 template<typename Type>
@@ -95,24 +69,15 @@ Tester<Type>::Tester()
 }
 
 template<typename Type>
-bool Tester<Type>::test()
-{
-    try{
-         _file<< "size; percentage sorted; time \n";
+void Tester<Type>::test()
+{    
+    _file<< "size; percentage sorted; time \n";
+    for(int p : _percentage)
+    {
         for(int s : _size)
         {
-            for(int p : _percentage)
-            {
-                generateRandom(s,p);
-                writeToFile(s,p, duration());
-            }
-
+            Array<Type> a(s,p);
+            writeToFile(s,p,duration(a._data,s));
         }
-
-    }catch(std::runtime_error const& ex)
-    {
-        std::cerr<<"runtime error: "<<ex.what()<<std::endl;
-        return false;
     }
-    return true;
 }

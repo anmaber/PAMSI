@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 
 template <typename Type>
 void merge(Type* array, int begin, int mid, int end)

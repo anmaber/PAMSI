@@ -17,6 +17,8 @@ protected:
 public:
 
     Graph(int vertexNumber, int begin);
+    void print();
+    virtual void addVertex(int vertex, int neighbour, int pathCost) = 0;
     virtual void dijkstra() = 0;
     virtual void bellmanFord() = 0;
     virtual ~Graph(){}

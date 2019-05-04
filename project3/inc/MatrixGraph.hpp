@@ -10,7 +10,7 @@ class MatrixGraph : public Graph
 public:
 
     MatrixGraph(int vertexNumber, int begin);
-    void addVertex();
+    void addVertex(int nodeNumber, int neighbourNumber, int pathCost);
     void dijkstra();
     void bellmanFord();
 };

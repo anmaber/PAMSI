@@ -12,7 +12,7 @@ class ListGraph : public Graph
 public:
 
     ListGraph(int vertexNumber, int begin);
-    void addNeighbour(int nodeNumber, int neighbourNumber, int pathCost);
+    void addVertex(int vertex, int neighbour, int pathCost);
     void dijkstra();
     void bellmanFord();
 

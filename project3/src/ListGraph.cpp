@@ -1,7 +1,6 @@
 #include "ListGraph.hpp"
 
 #include <queue>
-#include <iostream>
 #include <algorithm>
 
 ListGraph::ListGraph(int vertexNumber, int begin)
@@ -10,9 +9,9 @@ ListGraph::ListGraph(int vertexNumber, int begin)
     adjacency_.reserve(vertexNumber);
 }
 
-void ListGraph::addNeighbour(int nodeNumber, int neighbourNumber, int pathCost)
+void ListGraph::addVertex(int vertex, int neighbour, int pathCost)
 {
-    adjacency_[nodeNumber].push_back(std::make_pair(neighbourNumber,pathCost));
+    adjacency_[vertex].push_back(std::make_pair(neighbour,pathCost));
 }
 
 
@@ -46,22 +45,6 @@ void ListGraph::dijkstra()
         }
 
     }
-
-    std::cout<<"Vertex Distance from Source\n";
-    for (int i = 0; i < vertexNumber_; ++i)
-        std::cout<<i<<"--->"<<distances_[i]<<"\n";
-
-    for(auto n: previous_)
-    {
-        std::cout<<n.first<<"<--\t";
-        int index = n.first;
-        while(index>0)
-        {
-            std::cout<<previous_[index]<<"\t";
-            index = previous_[index];
-        }
-        std::cout<<std::endl;
-    }
 }
 
 void ListGraph::bellmanFord()
@@ -82,21 +65,5 @@ void ListGraph::bellmanFord()
             }
         }
     }
-
-    std::cout<<"Vertex Distance from Source\n";
-    for (int i = 0; i < vertexNumber_; ++i)
-        std::cout<<i<<"--->"<<distances_[i]<<"\n";
-
-    for(auto n: previous_)
-    {
-        std::cout<<n.first<<"<--\t";
-        int index = n.first;
-        while(index>0)
-        {
-            std::cout<<previous_[index]<<"\t";
-            index = previous_[index];
-        }
-        std::cout<<std::endl;
-    }
-
 }
+

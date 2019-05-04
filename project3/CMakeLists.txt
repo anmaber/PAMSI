@@ -10,9 +10,9 @@ add_compile_options(-c
                     -Wextra
                     -g)
 
-set (SRC_LIST
-	    src/ListGraph.cpp
-	)
+set (SRC_LIST src/Graph.cpp
+	      src/ListGraph.cpp
+    )
 
 
 include_directories(inc)

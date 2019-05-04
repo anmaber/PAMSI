@@ -1,19 +1,19 @@
 #pragma once
 
-#include <vector>
+#include "Graph.hpp"
 
 using AdjacencyList = std::vector<std::vector<std::pair<int,int>>>;
 
-class Graph{
+class ListGraph : public Graph
+{
 
-    int vertexNumber_;
-    int begin_;
     AdjacencyList adjacency_;
 
 public:
 
-    Graph(int vertexNumber, int begin);
+    ListGraph(int vertexNumber, int begin);
     void addNeighbour(int nodeNumber, int neighbourNumber, int pathCost);
     void dijkstra();
+    void bellmanFord();
 
 };

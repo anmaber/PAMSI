@@ -2,22 +2,17 @@
 
 #include <queue>
 #include <iostream>
-#include <climits>
-#include <map>
 #include <algorithm>
 
-Graph::Graph(int vertexNumber, int begin)
-    : vertexNumber_(vertexNumber),
-      begin_(begin)
-
+ListGraph::ListGraph(int vertexNumber, int begin)
+    : Graph(vertexNumber,begin)
 {
     adjacency_.reserve(vertexNumber);
 }
 
-void Graph::addNeighbour(int nodeNumber, int neighbourNumber, int pathCost)
+void ListGraph::addNeighbour(int nodeNumber, int neighbourNumber, int pathCost)
 {
     adjacency_[nodeNumber].push_back(std::make_pair(neighbourNumber,pathCost));
-    adjacency_[neighbourNumber].push_back(std::make_pair(nodeNumber, pathCost));
 }
 
 
@@ -25,14 +20,12 @@ using Pair = std::pair<int,int>;
 using PairVector = std::vector<Pair>;
 
 
-void Graph::dijkstra()
+void ListGraph::dijkstra()
 {
     std::priority_queue<Pair, PairVector,std::greater<Pair>> costVertexPq;
-    std::vector<int> distances(vertexNumber_,INT_MAX);
-    std::map<int, int> previous;
 
     costVertexPq.push(std::make_pair(0, begin_));
-    distances[begin_] = 0;
+    distances_[begin_] = 0;
 
     while(!costVertexPq.empty())
     {
@@ -44,11 +37,11 @@ void Graph::dijkstra()
             int vertex = neighbour.first;
             int cost = neighbour.second;
 
-            if (distances[vertex] > distances[smallestCost] + cost)
+            if (distances_[vertex] > distances_[smallestCost] + cost)
             {
-                distances[vertex] = distances[smallestCost] + cost;
-                costVertexPq.push(std::make_pair(distances[vertex], vertex));
-                previous[vertex] = smallestCost;
+                distances_[vertex] = distances_[smallestCost] + cost;
+                costVertexPq.push(std::make_pair(distances_[vertex], vertex));
+                previous_[vertex] = smallestCost;
             }
         }
 
@@ -56,17 +49,54 @@ void Graph::dijkstra()
 
     std::cout<<"Vertex Distance from Source\n";
     for (int i = 0; i < vertexNumber_; ++i)
-        std::cout<<i<<"--->"<<distances[i]<<"\n";
+        std::cout<<i<<"--->"<<distances_[i]<<"\n";
 
-    for(auto n: previous)
+    for(auto n: previous_)
     {
         std::cout<<n.first<<"<--\t";
         int index = n.first;
         while(index>0)
         {
-            std::cout<<previous[index]<<"\t";
-            index = previous[index];
+            std::cout<<previous_[index]<<"\t";
+            index = previous_[index];
         }
         std::cout<<std::endl;
     }
+}
+
+void ListGraph::bellmanFord()
+{
+    distances_[begin_] = 0;
+
+    for (int i = 1; i < vertexNumber_; ++i)
+    {
+        for (int j = 0; j < vertexNumber_; ++j)
+        {
+            for (const auto& n : adjacency_[j])
+            {
+                if (distances_[n.first] > n.second + distances_[j])
+                {
+                    distances_[n.first] = n.second + distances_[j];
+                    previous_[n.first] = j;
+                }
+            }
+        }
+    }
+
+    std::cout<<"Vertex Distance from Source\n";
+    for (int i = 0; i < vertexNumber_; ++i)
+        std::cout<<i<<"--->"<<distances_[i]<<"\n";
+
+    for(auto n: previous_)
+    {
+        std::cout<<n.first<<"<--\t";
+        int index = n.first;
+        while(index>0)
+        {
+            std::cout<<previous_[index]<<"\t";
+            index = previous_[index];
+        }
+        std::cout<<std::endl;
+    }
+
 }

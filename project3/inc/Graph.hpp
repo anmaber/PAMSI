@@ -19,4 +19,5 @@ public:
     Graph(int vertexNumber, int begin);
     virtual void dijkstra() = 0;
     virtual void bellmanFord() = 0;
+    virtual ~Graph(){}
 };

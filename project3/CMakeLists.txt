@@ -6,12 +6,13 @@ set (CMAKE_CXX_STANDARD 14)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_compile_options(-c
-                    -Wall
-                    -Wextra
-                    -g)
+    -Wall
+    -Wextra
+    -g)
 
 set (SRC_LIST src/Graph.cpp
-	      src/ListGraph.cpp
+    src/ListGraph.cpp
+    src/MatrixGraph.cpp
     )
 
 

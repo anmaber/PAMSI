@@ -1,6 +1,7 @@
 project(Graphs)
 cmake_minimum_required(VERSION 2.8)
 
+set (CMAKE_BUILD_TYPE debug)
 set (CMAKE_CXX_STANDARD 14)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -9,7 +10,10 @@ add_compile_options(-c
                     -Wextra
                     -g)
 
-set (SRC_LIST src/Graph.cpp)
+set (SRC_LIST
+	    src/ListGraph.cpp
+	)
+
 
 include_directories(inc)
 add_library(${PROJECT_NAME}-lib ${SRC_LIST})

@@ -20,11 +20,12 @@ void Graph::print()
     {
         std::cout<<n.first<<"<--\t";
         int index = n.first;
-        while(index>0)
+        while(index != begin_ && index!=INT_MAX)
         {
             std::cout<<previous_[index]<<"\t";
             index = previous_[index];
         }
         std::cout<<std::endl;
     }
+
 }

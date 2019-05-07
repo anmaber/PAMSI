@@ -4,7 +4,7 @@
 int main()
 {
 
-    Graph *g = new ListGraph(9,0);
+    Graph *g = new ListGraph(9,1);
 
     g->addVertex(0,1,4);
     g->addVertex(0,7,8);
@@ -20,10 +20,11 @@ int main()
     g->addVertex(6,7,1);
     g->addVertex(6,8,6);
     g->addVertex(7,8,7);
-    g->dijkstra();
+    g->bellmanFord();
     g->print();
 
-    Graph *g2 = new MatrixGraph(9,0);
+
+    Graph *g2 = new MatrixGraph(9,1);
 
 
     g2->addVertex(0,1,4);
@@ -41,8 +42,9 @@ int main()
     g2->addVertex(6,8,6);
     g2->addVertex(7,8,7);
 
-    g2->dijkstra();
+    g2->bellmanFord();
     g2->print();
+
 /*
     ListGraph gr2(9,0);
     Graph&g2 = gr2;

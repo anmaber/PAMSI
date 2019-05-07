@@ -2,6 +2,7 @@
 
 #include <queue>
 #include <algorithm>
+#include <climits>
 
 ListGraph::ListGraph(int vertexNumber, int begin)
     : Graph(vertexNumber,begin)
@@ -51,16 +52,19 @@ void ListGraph::bellmanFord()
 {
     distances_[begin_] = 0;
 
-    for (int i = 1; i < vertexNumber_; ++i)
+    for (int i = 0; i < vertexNumber_-1; ++i)
     {
         for (int j = 0; j < vertexNumber_; ++j)
         {
-            for (const auto& n : adjacency_[j])
+            if(!adjacency_[j].empty())
             {
-                if (distances_[n.first] > n.second + distances_[j])
+                for (auto& n : adjacency_[j])
                 {
-                    distances_[n.first] = n.second + distances_[j];
-                    previous_[n.first] = j;
+                    if (distances_[n.first] > n.second + distances_[j] && distances_[j]!=INT_MAX)
+                    {
+                        distances_[n.first] = n.second + distances_[j];
+                        previous_[n.first] = j;
+                    }
                 }
             }
         }

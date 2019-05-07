@@ -60,7 +60,7 @@ void MatrixGraph::bellmanFord()
         {
             for(int k = 0; k < vertexNumber_; ++k)
             {
-                if(adjacency_[j][k] != INT_MAX && distances_[k] > adjacency_[j][k] + distances_[j])
+                if(distances_[j] != INT_MAX && adjacency_[j][k] != INT_MAX && distances_[k] > adjacency_[j][k] + distances_[j])
                 {
                     distances_[k] = adjacency_[j][k] + distances_[j];
                     previous_[k] = j;

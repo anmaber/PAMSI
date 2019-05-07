@@ -1,6 +1,8 @@
 #include "MatrixGraph.hpp"
+
 #include <iostream>
 #include <climits>
+#include <queue>
 
 MatrixGraph::MatrixGraph(int vertexNumber, int begin)
     : Graph(vertexNumber,begin)
@@ -17,40 +19,36 @@ void MatrixGraph::addVertex(int nodeNumber, int neighbourNumber, int pathCost)
     adjacency_[nodeNumber][neighbourNumber] = pathCost;
 }
 
+using Pair = std::pair<int,int>;
+using PairVector = std::vector<Pair>;
+
 void MatrixGraph::dijkstra()
 {
-    std::vector<bool> processed(vertexNumber_, false);
+    std::priority_queue<Pair, PairVector,std::greater<Pair>> costVertexPq;
+
+    costVertexPq.push(std::make_pair(0, begin_));
     distances_[begin_] = 0;
 
-    for(int i = 0; i < vertexNumber_ -1; ++i)
+    while(!costVertexPq.empty())
     {
-        int min = INT_MAX;
-        int minIndex;
+        int smallestCost = costVertexPq.top().second;
+        costVertexPq.pop();
 
-        for(int j = 0; j < vertexNumber_; ++j)
+        for(int i = 0; i < vertexNumber_; ++i)
         {
-            if(!processed[j] && distances_[j] <= min)
-            {
-                min = distances_[j];
-                minIndex = j;
-            }
-        }
+            if(adjacency_[smallestCost][i] == INT_MAX) continue;
+            int vertex = i;
+            int cost = adjacency_[smallestCost][i];
 
-        processed[minIndex] = true;
-
-        for(int k = 0; k < vertexNumber_; ++k)
-        {
-            if(!processed[k] && adjacency_[minIndex][k] != INT_MAX && distances_[minIndex] != INT_MAX
-                    && distances_[minIndex] + adjacency_[minIndex][k] < distances_[k])
+            if (distances_[vertex] > distances_[smallestCost] + cost)
             {
-                distances_[k] = distances_[minIndex] + adjacency_[minIndex][k];
-                previous_[k] = minIndex;
+                distances_[vertex] = distances_[smallestCost] + cost;
+                costVertexPq.push(std::make_pair(distances_[vertex], vertex));
+                previous_[vertex] = smallestCost;
             }
         }
     }
 }
-
-
 
 void MatrixGraph::bellmanFord()
 {

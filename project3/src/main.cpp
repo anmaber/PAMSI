@@ -20,7 +20,7 @@ int main()
     g->addVertex(6,7,1);
     g->addVertex(6,8,6);
     g->addVertex(7,8,7);
-    g->bellmanFord();
+    g->dijkstra();
     g->print();
 
     Graph *g2 = new MatrixGraph(9,0);
@@ -41,7 +41,7 @@ int main()
     g2->addVertex(6,8,6);
     g2->addVertex(7,8,7);
 
-    g2->bellmanFord();
+    g2->dijkstra();
     g2->print();
 /*
     ListGraph gr2(9,0);

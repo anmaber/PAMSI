@@ -12,19 +12,22 @@ MatrixGraph::MatrixGraph(int vertexNumber, int begin)
     {
         a.resize(vertexNumber,INT_MAX);
     }
+
 }
 
-void MatrixGraph::addVertex(int nodeNumber, int neighbourNumber, int pathCost)
+void MatrixGraph::addVertex(int vertex, int neighbourNumber, int pathCost)
 {
-    adjacency_[nodeNumber][neighbourNumber] = pathCost;
+    adjacency_[vertex][neighbourNumber] = pathCost;
+    adjacency_[neighbourNumber][vertex] = pathCost;
+
 }
 
-using Pair = std::pair<int,int>;
-using PairVector = std::vector<Pair>;
+using Edge = std::pair<int,int>;
+using EdgeVector = std::vector<Edge>;
 
 void MatrixGraph::dijkstra()
 {
-    std::priority_queue<Pair, PairVector,std::greater<Pair>> costVertexPq;
+    std::priority_queue<Edge, EdgeVector,std::greater<Edge>> costVertexPq;
 
     costVertexPq.push(std::make_pair(0, begin_));
     distances_[begin_] = 0;
@@ -69,4 +72,29 @@ void MatrixGraph::bellmanFord()
         }
     }
 
+}
+
+void MatrixGraph::initializeAdjacency()
+{
+    if(!adjacency_.empty()) adjacency_.clear();
+
+    adjacency_.resize(vertexNumber_);
+    for(auto & a : adjacency_)
+    {
+        a.resize(vertexNumber_,INT_MAX);
+    }
+}
+
+void MatrixGraph::randomizeEdges(std::vector<Edge> &possibleEdges, int edgesNumber)
+{
+    for (int i = 0; i < edgesNumber; ++i)
+    {
+        int cost = std::rand() % 50 +1;
+        int edgeIndex = std::rand() % possibleEdges.size();
+        Edge e = possibleEdges[edgeIndex];
+        auto toRemove = possibleEdges.begin()+edgeIndex;
+        possibleEdges.erase(toRemove);
+        adjacency_[e.first][e.second] = cost;
+        adjacency_[e.second][e.first] = cost;
+    }
 }

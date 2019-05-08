@@ -13,6 +13,7 @@ add_compile_options(-c
 set (SRC_LIST src/Graph.cpp
     src/ListGraph.cpp
     src/MatrixGraph.cpp
+    src/Tester.cpp
     )
 
 

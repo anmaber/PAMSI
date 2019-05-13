@@ -10,3 +10,6 @@ Implementations of data structures (doubly linked list, stack, queue, priority q
 
 ## Project 2
 Implementations of sorting algorithms (quick sort, merge sort, heap sort) and tests of their time efficiency.
+
+## Project 3
+Implementation of Dijkstra and Bellman-Ford algorithm and tests of their time efficiency.

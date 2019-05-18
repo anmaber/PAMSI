@@ -13,3 +13,6 @@ Implementations of sorting algorithms (quick sort, merge sort, heap sort) and te
 
 ## Project 3
 Implementation of Dijkstra and Bellman-Ford algorithm and tests of their time efficiency.
+
+## Project 4
+Implementation of tic-tac-toe game using minimax algorithm.

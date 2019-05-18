@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.2)
 
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
@@ -32,27 +32,33 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
   include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
-project(project4)
+# Now simply link against gtest or gtest_main as needed. Eg
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(SRC_LIST src/)
+set(CMAKE_CXX_FLAGS "-g -O0 -Wall --coverage")
+set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
 
+project(tic-tac-toe)
 
-
-find_package(Qt5Core)
+set(SRC_LIST
+src/Game.cpp
+)
 
 include_directories(inc)
 add_library(${PROJECT_NAME}-lib ${SRC_LIST})
 add_executable(${PROJECT_NAME} src/main.cpp)
 
-target_link_libraries(${PROJECT_NAME} Qt5::Core ${PROJECT_NAME}-lib)
+if (UNIX)
+    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
+else (UNIX)
+    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
+endif (UNIX)
 
-
-set(TEST_SRC_LIST test/test_main.cpp)
+set(TEST_SRC_LIST
+test/test_main.cpp
+)
 
 link_libraries(gtest)
 add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})

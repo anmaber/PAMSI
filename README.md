@@ -15,4 +15,5 @@ Implementations of sorting algorithms (quick sort, merge sort, heap sort) and te
 Implementation of Dijkstra and Bellman-Ford algorithm and tests of their time efficiency.
 
 ## Project 4
+![Build Status](https://travis-ci.org/anmaber/PAMSI.svg?branch=master)
 Implementation of tic-tac-toe game using minimax algorithm.

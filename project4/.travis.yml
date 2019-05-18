@@ -21,6 +21,7 @@ compiler:
   - clang
 
 script:
+  - cd project4
   - mkdir Build
   - cd Build
   - cmake ..

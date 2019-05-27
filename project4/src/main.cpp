@@ -1,10 +1,9 @@
 #include <iostream>
-#include "Board.hpp"
+#include "Game.hpp"
 
 int main()
 {
-	std::cout<<"tic-tac-toe!\n";
-        Board b(3);
-        b.getBoard();
+        std::cout<<"tic-tac-toe!\n";
+        Game g(3);
 	return 0;
 }

@@ -43,6 +43,7 @@ set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
 project(tic-tac-toe)
 
 set(SRC_LIST
+    src/Player.cpp
     src/Board.cpp
     src/Game.cpp
 
@@ -59,6 +60,7 @@ else (UNIX)
 endif (UNIX)
 
 set(TEST_SRC_LIST
+    test/PlayerTests.cpp
     test/BoardTests.cpp
     test/GameTests.cpp
     test/test_main.cpp

@@ -4,14 +4,14 @@
 Board::Board(int size)
     : size_(size)
 {
-    board_.resize(size);
-    for(auto & b : board_)
+    fields_.resize(size);
+    for(auto & b : fields_)
     {
         b.resize(size,' ');
     }
 }
 
-BoardFields Board::getBoard()
+Fields Board::getFields()
 {
-    return board_;
+    return fields_;
 }

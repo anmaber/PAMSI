@@ -13,4 +13,5 @@ public:
     Board() = delete;
     Board(int size);
     Fields getFields();
+    void printBoard() const;
 };

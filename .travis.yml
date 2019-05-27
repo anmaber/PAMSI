@@ -26,4 +26,4 @@ script:
   - cd Build
   - cmake ..
   - make
-  - ./project4-ut
+  - ./tic-tac-toe-ut

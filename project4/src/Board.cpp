@@ -37,7 +37,7 @@ int Board::getSize() const
     return size_;
 }
 
-bool Board::validateCoordinates(int xCoordinate, int yCoordinate)
+bool Board::validateCoordinates(int xCoordinate, int yCoordinate) const
 {
     return fields_[xCoordinate][yCoordinate] == ' ';
 }
@@ -52,7 +52,7 @@ bool Board::putOnBoard(int xCoordinate, int yCoordinate, char currentPlayer)
     return false;
 }
 
-bool Board::checkWinnerVertically(int xCoordinate, int yCoordinate, char currentPlayer)
+bool Board::checkWinnerVertically(int xCoordinate, int yCoordinate, char currentPlayer) const
 {
     int start =0, end = size_ -1;
     if(yCoordinate - winningNumber_ +1 >= 0 ) start = yCoordinate - winningNumber_ +1;
@@ -68,7 +68,7 @@ bool Board::checkWinnerVertically(int xCoordinate, int yCoordinate, char current
 
 }
 
-bool Board::checkWinnerHorizontally(int xCoordinate, int yCoordinate,char currentPlayer)
+bool Board::checkWinnerHorizontally(int xCoordinate, int yCoordinate,char currentPlayer) const
 {
     int start =0, end = size_ -1;
     if(xCoordinate - winningNumber_ +1 >= 0 ) start = xCoordinate - winningNumber_ +1;
@@ -84,7 +84,7 @@ bool Board::checkWinnerHorizontally(int xCoordinate, int yCoordinate,char curren
     return false;
 }
 
-bool Board::checkWinnerDiagonally(int xCoordinate, int yCoordinate,char currentPlayer)
+bool Board::checkWinnerDiagonally(int xCoordinate, int yCoordinate,char currentPlayer) const
 {
     int startX, endX, startY, endY;
     startX = xCoordinate - winningNumber_ +1;
@@ -116,7 +116,7 @@ bool Board::checkWinnerDiagonally(int xCoordinate, int yCoordinate,char currentP
 
 }
 
-bool Board::checkWinnerAntiDiagonally(int xCoordinate, int yCoordinate,char currentPlayer)
+bool Board::checkWinnerAntiDiagonally(int xCoordinate, int yCoordinate,char currentPlayer) const
 {
     int startX, endX, startY, endY;
     startX = xCoordinate + winningNumber_ -1;
@@ -147,7 +147,7 @@ bool Board::checkWinnerAntiDiagonally(int xCoordinate, int yCoordinate,char curr
     return false;
 }
 
-bool Board::checkWinner(int xCoordinate, int yCoordinate, char currentPlayer)
+bool Board::checkWinner(int xCoordinate, int yCoordinate, char currentPlayer) const
 {
     return (
                 checkWinnerVertically(xCoordinate,yCoordinate,currentPlayer)||

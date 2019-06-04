@@ -22,7 +22,7 @@ public:
     Game(int size, int winningNumber);
     void getCoordinates();
     //bool markPlace();
-    bool isCurrentPlayerWinner();
+    bool isCurrentPlayerWinner() const;
     void play();
 
 };

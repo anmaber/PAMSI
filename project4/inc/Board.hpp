@@ -15,12 +15,12 @@ class Board
     int winningNumber_;
     Fields fields_;
 
-    bool validateCoordinates(int xCoordinate, int yCoordinate);
+    bool validateCoordinates(int xCoordinate, int yCoordinate) const;
 
-    bool checkWinnerVertically(int xCoordinate,int yCoordinate, char currentPlayer);
-    bool checkWinnerHorizontally(int xCoordinate, int yCoordinate,char currentPlayer);
-    bool checkWinnerDiagonally(int xCoordinate, int yCoordinate,char currentPlayer);
-    bool checkWinnerAntiDiagonally(int xCoordinate, int yCoordinate,char currentPlayer);
+    bool checkWinnerVertically(int xCoordinate,int yCoordinate, char currentPlayer) const;
+    bool checkWinnerHorizontally(int xCoordinate, int yCoordinate,char currentPlayer) const;
+    bool checkWinnerDiagonally(int xCoordinate, int yCoordinate,char currentPlayer) const;
+    bool checkWinnerAntiDiagonally(int xCoordinate, int yCoordinate,char currentPlayer) const;
 
 public:
 
@@ -31,6 +31,6 @@ public:
     int getSize() const;
 
     bool putOnBoard(int xCoordinate, int yCoordinate,char currentPlayer);
-    bool checkWinner(int xCoordinate, int yCoordinate,char currentPlayer);
+    bool checkWinner(int xCoordinate, int yCoordinate,char currentPlayer) const;
 
 };

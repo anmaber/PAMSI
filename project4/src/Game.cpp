@@ -33,7 +33,7 @@ bool Game::markPlace()
     return board_.putOnBoard(currentXCoordinate_,currentYCoordinate_, currentPlayer_);
 }
 */
-bool Game::isCurrentPlayerWinner()
+bool Game::isCurrentPlayerWinner() const
 {
     return board_.checkWinner(currentXCoordinate_,currentYCoordinate_,currentPlayer_->getSign());
 }

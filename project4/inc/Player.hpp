@@ -9,7 +9,9 @@ class Player
 public:
     Player(char sign);
     Player() = default;
-    std::pair<int,int> move(Board& board);
+    virtual std::pair<int,int> move(Board& board);
     bool operator == (const Player& p);
     char getSign() const;
+
+    virtual ~Player(){}
 };

@@ -161,3 +161,15 @@ void Board::eraseField(int xCoordinate, int yCoordinate)
 {
     fields_[xCoordinate][yCoordinate] = ' ';
 }
+
+bool Board::isFull()
+{
+    for(int i = 0 ;i < getSize();++i)
+    {
+        for(int j = 0; j< getSize(); ++j)
+        {
+            if(fields_[i][j]== ' ') return false;
+        }
+    }
+    return true;
+}

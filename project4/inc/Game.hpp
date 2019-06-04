@@ -1,6 +1,6 @@
 #pragma once
 #include "Board.hpp"
-#include "Player.hpp"
+#include "AI.hpp"
 #include <memory>
 
 using PlayerPtr = std::shared_ptr<Player>;
@@ -10,7 +10,7 @@ class Game
     Board board_;
 
     PlayerPtr player1_ = std::make_shared<Player>('X');
-    PlayerPtr player2_ = std::make_shared<Player>('O');
+    PlayerPtr player2_ = std::make_shared<AI>('O');
 
     PlayerPtr currentPlayer_;
     int currentXCoordinate_;

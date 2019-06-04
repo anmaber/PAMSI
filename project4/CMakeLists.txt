@@ -44,6 +44,7 @@ project(tic-tac-toe)
 
 set(SRC_LIST
     src/Player.cpp
+    src/AI.cpp
     src/Board.cpp
     src/Game.cpp
 

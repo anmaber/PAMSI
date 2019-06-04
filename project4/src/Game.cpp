@@ -36,10 +36,10 @@ bool Game::markPlace()
 bool Game::isCurrentPlayerWinner()
 {
     return (
-                board_.checkWinnerVertically(currentXCoordinate_, currentYCoordinate_, currentPlayer_.getSign())||
-                board_.checkWinnerHorizontally(currentXCoordinate_,currentYCoordinate_,currentPlayer_.getSign()) ||
-                board_.checkWinnerDiagonally(currentXCoordinate_,currentYCoordinate_,currentPlayer_.getSign()) ||
-                board_.checkWinnerAntiDiagonally(currentXCoordinate_,currentYCoordinate_,currentPlayer_.getSign())
+                board_.checkWinnerVertically(currentXCoordinate_, currentYCoordinate_, currentPlayer_->getSign())||
+                board_.checkWinnerHorizontally(currentXCoordinate_,currentYCoordinate_,currentPlayer_->getSign()) ||
+                board_.checkWinnerDiagonally(currentXCoordinate_,currentYCoordinate_,currentPlayer_->getSign()) ||
+                board_.checkWinnerAntiDiagonally(currentXCoordinate_,currentYCoordinate_,currentPlayer_->getSign())
                 );
 }
 
@@ -50,17 +50,15 @@ void Game::play()
     board_.printBoard();
     while(!finished)
     {
+        std::pair<int,int> coordinates = currentPlayer_->move(board_);
 
-
-        std::pair<int,int> coordinates = currentPlayer_.move(board_);
-        std::cout<<"ok!\n";
         currentXCoordinate_ = coordinates.first;
         currentYCoordinate_ = coordinates.second;
 
         board_.printBoard();
         if(isCurrentPlayerWinner())
         {
-            std::cout<< "Wygrał ziomus: " <<currentPlayer_.getSign()<< "\n";
+            std::cout<< "Wygrał ziomus: " <<currentPlayer_->getSign()<< "\n";
             finished = true;
         }
         else if(++turn == board_.getSize() * board_.getSize())

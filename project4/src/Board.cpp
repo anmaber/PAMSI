@@ -58,7 +58,7 @@ bool Board::checkWinnerVertically(int xCoordinate, int yCoordinate, char current
     if(yCoordinate - winningNumber_ +1 >= 0 ) start = yCoordinate - winningNumber_ +1;
     if(yCoordinate + winningNumber_ - 1 <= end) end = yCoordinate + winningNumber_ - 1;
     int counter = 0;
-    for(int i = start; i < end; ++i)
+    for(int i = start; i <= end; ++i)
     {
         if (fields_[xCoordinate][i]==currentPlayer) counter++;
         else counter = 0;
@@ -75,7 +75,7 @@ bool Board::checkWinnerHorizontally(int xCoordinate, int yCoordinate,char curren
     if(xCoordinate + winningNumber_ - 1 <= end) end = xCoordinate + winningNumber_ - 1;
 
     int counter = 0;
-    for(int i = start; i < end; ++i)
+    for(int i = start; i <= end; ++i)
     {
         if (fields_[i][yCoordinate]==currentPlayer) counter++;
         else counter = 0;

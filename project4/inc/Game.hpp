@@ -1,16 +1,18 @@
 #pragma once
 #include "Board.hpp"
 #include "Player.hpp"
+#include <memory>
 
+using PlayerPtr = std::shared_ptr<Player>;
 
 class Game
 {
     Board board_;
 
-    Player player1_ = Player('X');
-    Player player2_ = Player('O');
+    PlayerPtr player1_ = std::make_shared<Player>('X');
+    PlayerPtr player2_ = std::make_shared<Player>('O');
 
-    Player currentPlayer_;
+    PlayerPtr currentPlayer_;
     int currentXCoordinate_;
     int currentYCoordinate_;
 

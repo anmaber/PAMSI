@@ -1,14 +1,15 @@
 #pragma once
+#include "Board.hpp"
 
 class Player
 {
     char sign_;
-    bool turn_;
+    std::pair<int,int> getCoordinates(int max);
 
 public:
     Player(char sign);
-
-    bool getTurn() const;
-    void setTurn(bool value);
+    Player() = default;
+    std::pair<int,int> move(Board& board);
+    bool operator == (const Player& p);
     char getSign() const;
 };

@@ -1,14 +1,14 @@
 #pragma once
 #include "Board.hpp"
-//#include "Player.hpp"
+#include "Player.hpp"
 
 
 class Game
 {
     Board board_;
 
-    Player player1_ = Player::cross;
-    Player player2_ = Player::circle;
+    Player player1_ = Player('X');
+    Player player2_ = Player('O');
 
     Player currentPlayer_;
     int currentXCoordinate_;
@@ -19,7 +19,7 @@ class Game
 public:
     Game(int size, int winningNumber);
     void getCoordinates();
-    bool markPlace();
+    //bool markPlace();
     bool isCurrentPlayerWinner();
     void play();
 

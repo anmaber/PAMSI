@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include "Player.hpp"
-
+/*
 struct PlayerTests : public::testing::Test
 {
     Player player{'X'};
@@ -14,3 +14,4 @@ TEST_F(PlayerTests, playerCreatedProperly)
     player.setTurn(!player.getTurn());
     ASSERT_TRUE(player.getTurn());
 }
+*/

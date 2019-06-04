@@ -42,17 +42,17 @@ bool Board::validateCoordinates(int xCoordinate, int yCoordinate)
     return fields_[xCoordinate][yCoordinate] == ' ';
 }
 
-bool Board::putOnBoard(int xCoordinate, int yCoordinate, Player currentPlayer)
+bool Board::putOnBoard(int xCoordinate, int yCoordinate, char currentPlayer)
 {
     if(validateCoordinates(xCoordinate,yCoordinate))
     {
-        fields_[xCoordinate][yCoordinate] = char(currentPlayer);
+        fields_[xCoordinate][yCoordinate] = currentPlayer;
         return true;
     }
     return false;
 }
 
-bool Board::checkWinnerVertically(int xCoordinate, int yCoordinate, Player currentPlayer)
+bool Board::checkWinnerVertically(int xCoordinate, int yCoordinate, char currentPlayer)
 {
     int start =0, end = size_ -1;
     if(yCoordinate - winningNumber_ +1 >= 0 ) start = yCoordinate - winningNumber_ +1;
@@ -60,7 +60,7 @@ bool Board::checkWinnerVertically(int xCoordinate, int yCoordinate, Player curre
     int counter = 0;
     for(int i = start; i < end; ++i)
     {
-        if (fields_[xCoordinate][i]==char(currentPlayer)) counter++;
+        if (fields_[xCoordinate][i]==currentPlayer) counter++;
         else counter = 0;
         if(counter == winningNumber_) return true;
     }
@@ -68,7 +68,7 @@ bool Board::checkWinnerVertically(int xCoordinate, int yCoordinate, Player curre
 
 }
 
-bool Board::checkWinnerHorizontally(int xCoordinate, int yCoordinate,Player currentPlayer)
+bool Board::checkWinnerHorizontally(int xCoordinate, int yCoordinate,char currentPlayer)
 {
     int start =0, end = size_ -1;
     if(xCoordinate - winningNumber_ +1 >= 0 ) start = xCoordinate - winningNumber_ +1;
@@ -77,14 +77,14 @@ bool Board::checkWinnerHorizontally(int xCoordinate, int yCoordinate,Player curr
     int counter = 0;
     for(int i = start; i < end; ++i)
     {
-        if (fields_[i][yCoordinate]==char(currentPlayer)) counter++;
+        if (fields_[i][yCoordinate]==currentPlayer) counter++;
         else counter = 0;
         if(counter == winningNumber_) return true;
     }
     return false;
 }
 
-bool Board::checkWinnerDiagonally(int xCoordinate, int yCoordinate, Player currentPlayer)
+bool Board::checkWinnerDiagonally(int xCoordinate, int yCoordinate,char currentPlayer)
 {
     int startX, endX, startY, endY;
     startX = xCoordinate - winningNumber_ +1;
@@ -108,7 +108,7 @@ bool Board::checkWinnerDiagonally(int xCoordinate, int yCoordinate, Player curre
 
     for(int i = startX, j = startY; i <= endX && j<= endY; ++j, ++i)
     {
-        if (fields_[i][j] ==char(currentPlayer)) counter++;
+        if (fields_[i][j] == currentPlayer) counter++;
         else counter = 0;
         if(counter == winningNumber_) return true;
     }
@@ -116,7 +116,7 @@ bool Board::checkWinnerDiagonally(int xCoordinate, int yCoordinate, Player curre
 
 }
 
-bool Board::checkWinnerAntiDiagonally(int xCoordinate, int yCoordinate, Player currentPlayer)
+bool Board::checkWinnerAntiDiagonally(int xCoordinate, int yCoordinate,char currentPlayer)
 {
     int startX, endX, startY, endY;
     startX = xCoordinate + winningNumber_ -1;
@@ -140,7 +140,7 @@ bool Board::checkWinnerAntiDiagonally(int xCoordinate, int yCoordinate, Player c
 
     for(int i = startX, j = startY; i >= endX && j<= endY; ++j, --i)
     {
-        if (fields_[i][j] ==char(currentPlayer)) counter++;
+        if (fields_[i][j] == currentPlayer) counter++;
         else counter = 0;
         if(counter == winningNumber_) return true;
     }

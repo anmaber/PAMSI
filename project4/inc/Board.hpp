@@ -30,6 +30,7 @@ public:
     void printBoard() const;
     int getSize() const;
 
+    void eraseField(int xCoordinate, int yCoordinate);
     bool putOnBoard(int xCoordinate, int yCoordinate,char currentPlayer);
     bool checkWinner(int xCoordinate, int yCoordinate,char currentPlayer) const;
 

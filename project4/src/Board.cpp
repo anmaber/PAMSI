@@ -156,3 +156,8 @@ bool Board::checkWinner(int xCoordinate, int yCoordinate, char currentPlayer) co
                 checkWinnerAntiDiagonally(xCoordinate,yCoordinate,currentPlayer)
                 );
 }
+
+void Board::eraseField(int xCoordinate, int yCoordinate)
+{
+    fields_[xCoordinate][yCoordinate] = ' ';
+}

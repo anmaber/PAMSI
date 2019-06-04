@@ -7,32 +7,6 @@ Game::Game(int size, int winningNumber)
     currentPlayer_ = player1_;
 }
 
-//dopisac ut
-/*
-void Game::getCoordinates()
-{
-    std::cout<<"coordinate X: ";
-    std::cin >> currentXCoordinate_;
-    while(currentXCoordinate_ < 0 || currentXCoordinate_ >= board_.getSize())
-    {
-        std::cout<<"invalid input\n";
-        std::cin >> currentXCoordinate_;
-    }
-
-    std::cout<<"coordinate Y: ";
-    std::cin >> currentYCoordinate_;
-    while(currentYCoordinate_ < 0 || currentYCoordinate_ >= board_.getSize())
-    {
-        std::cout<<"invalid input\n";
-        std::cin >> currentYCoordinate_;
-    }
-}*/
-/*
-bool Game::markPlace()
-{
-    return board_.putOnBoard(currentXCoordinate_,currentYCoordinate_, currentPlayer_);
-}
-*/
 bool Game::isCurrentPlayerWinner() const
 {
     return board_.checkWinner(currentXCoordinate_,currentYCoordinate_,currentPlayer_->getSign());

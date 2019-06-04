@@ -146,3 +146,13 @@ bool Board::checkWinnerAntiDiagonally(int xCoordinate, int yCoordinate,char curr
     }
     return false;
 }
+
+bool Board::checkWinner(int xCoordinate, int yCoordinate, char currentPlayer)
+{
+    return (
+                checkWinnerVertically(xCoordinate,yCoordinate,currentPlayer)||
+                checkWinnerHorizontally(xCoordinate,yCoordinate,currentPlayer) ||
+                checkWinnerDiagonally(xCoordinate,yCoordinate,currentPlayer) ||
+                checkWinnerAntiDiagonally(xCoordinate,yCoordinate,currentPlayer)
+                );
+}

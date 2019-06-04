@@ -35,12 +35,7 @@ bool Game::markPlace()
 */
 bool Game::isCurrentPlayerWinner()
 {
-    return (
-                board_.checkWinnerVertically(currentXCoordinate_, currentYCoordinate_, currentPlayer_->getSign())||
-                board_.checkWinnerHorizontally(currentXCoordinate_,currentYCoordinate_,currentPlayer_->getSign()) ||
-                board_.checkWinnerDiagonally(currentXCoordinate_,currentYCoordinate_,currentPlayer_->getSign()) ||
-                board_.checkWinnerAntiDiagonally(currentXCoordinate_,currentYCoordinate_,currentPlayer_->getSign())
-                );
+    return board_.checkWinner(currentXCoordinate_,currentYCoordinate_,currentPlayer_->getSign());
 }
 
 void Game::play()

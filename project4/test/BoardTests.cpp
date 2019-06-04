@@ -4,7 +4,7 @@
 struct BoardTests : public::testing::Test
 {
     int size = 3;
-    Board board{size};
+    Board board{size,3};
 };
 
 TEST_F(BoardTests, checkIfAllFieldsInNewBoardAreSpaces)

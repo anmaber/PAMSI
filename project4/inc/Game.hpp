@@ -17,7 +17,7 @@ class Game
 
 
 public:
-    Game(int size);
+    Game(int size, int winningNumber);
     void getCoordinates();
     bool markPlace();
     bool isCurrentPlayerWinner();

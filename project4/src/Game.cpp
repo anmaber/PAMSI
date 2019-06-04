@@ -1,8 +1,8 @@
 #include "Game.hpp"
 #include <iostream>
 
-Game::Game(int size)
-    : board_(size)
+Game::Game(int size, int winningNumber)
+    : board_(size,winningNumber)
 {
     currentPlayer_ = player1_;
 }
@@ -36,8 +36,8 @@ bool Game::markPlace()
 bool Game::isCurrentPlayerWinner()
 {
     return (
-                board_.checkWinnerVertically(currentXCoordinate_,currentPlayer_)||
-                board_.checkWinnerHorizontally(currentYCoordinate_,currentPlayer_) ||
+                board_.checkWinnerVertically(currentXCoordinate_, currentYCoordinate_, currentPlayer_)||
+                board_.checkWinnerHorizontally(currentXCoordinate_,currentYCoordinate_,currentPlayer_) ||
                 board_.checkWinnerDiagonally(currentXCoordinate_,currentYCoordinate_,currentPlayer_) ||
                 board_.checkWinnerAntiDiagonally(currentXCoordinate_,currentYCoordinate_,currentPlayer_)
                 );

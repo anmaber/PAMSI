@@ -173,3 +173,8 @@ bool Board::isFull()
     }
     return true;
 }
+
+int Board::getWinningNumber() const
+{
+    return winningNumber_;
+}

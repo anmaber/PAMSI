@@ -29,10 +29,12 @@ public:
     Fields getFields() const;
     void printBoard() const;
     int getSize() const;
+    int getWinningNumber() const;
 
     bool isFull();
     void eraseField(int xCoordinate, int yCoordinate);
     bool putOnBoard(int xCoordinate, int yCoordinate,char currentPlayer);
     bool checkWinner(int xCoordinate, int yCoordinate,char currentPlayer) const;
+
 
 };

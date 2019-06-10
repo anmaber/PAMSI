@@ -6,24 +6,22 @@ AI::AI(char sign)
     : Player(sign)
 {}
 
-int AI::minimax(Board &board, int depth, bool isMax, int x, int y,char player)
+int AI::minimax(Board &board, int depth, bool isMax, int x, int y,char player,int alpha, int beta)
 {
 
 
-    if(board.checkWinner(x,y,player))
+    if(depth == board.getSize() + 1 || board.isFull() || board.checkWinner(x,y,player))
     {
-        if(player == 'O') return 10;
-        else return -10;
+        if(player == 'O') return evaluateBoard(board,x,y,'X');
+        else return -evaluateBoard(board,x,y,'O');
     }
 
-    if(board.isFull())
-    {
-        return 0;
-    }
+    int best;
+    depth++;
 
     if(isMax)
     {
-        int best = -1000;
+        best = alpha;
         for(int i = 0; i < board.getSize(); ++i)
         {
             for(int j = 0; j < board.getSize(); ++j)
@@ -31,17 +29,20 @@ int AI::minimax(Board &board, int depth, bool isMax, int x, int y,char player)
                 if(board.getFields()[i][j] == ' ')
                 {
                     board.putOnBoard(i,j,'O');
-                    best = std::max(best,minimax(board,depth+1,!isMax,i,j,'O'));
+                    best = std::max(best,minimax(board,depth,!isMax,i,j,'O',alpha,beta));
+                    alpha =std::max(best,alpha);
+                    //if(score > alpha) alpha = score;
                     board.eraseField(i,j);
 
                 }
+                if(alpha >= beta) break;
             }
+            if(alpha >= beta) break;
         }
-        return best;
     }
     else
     {
-        int best = 1000;
+        best = beta;
         for(int i = 0; i < board.getSize(); ++i)
         {
             for(int j = 0; j < board.getSize(); ++j)
@@ -49,17 +50,21 @@ int AI::minimax(Board &board, int depth, bool isMax, int x, int y,char player)
                 if(board.getFields()[i][j] == ' ')
                 {
                     board.putOnBoard(i,j,'X');
-                    best = std::min(best,minimax(board,depth+1,!isMax,i,j,'X'));
+                    best = std::min(best,minimax(board,depth,!isMax,i,j,'X',alpha,beta));
+                    beta = std::min(best,beta);
                     board.eraseField(i,j);
 
                 }
+                if(alpha >= beta) break;
+
             }
+            if(alpha >= beta) break;
         }
-        return best;
+
 
     }
 
-
+return best;
 }
 
 
@@ -76,7 +81,7 @@ std::pair<int, int> AI::findBestMove(Board &board)
             if(board.getFields()[i][j] == ' ')
             {
                 board.putOnBoard(i,j,getSign());
-                int moveValue = minimax(board,0,false,i,j,'O');
+                int moveValue = minimax(board,0,false,i,j,'O',bestValue,std::numeric_limits<int>::max());
                 board.eraseField(i,j);
 
                 if(moveValue > bestValue)
@@ -150,6 +155,7 @@ int AI::evaluateVertically(const Board &board, int xCoordinate, int yCoordinate,
         }
     }
     if(opponentCounterBottom+opponentCounterTop == board.getWinningNumber() - 1) return 1000;
+    if(counterBottom+counterTop== board.getWinningNumber() - 1) return 100;
     return counterBottom+counterTop;
 }
 
@@ -192,6 +198,7 @@ int AI::evaluateHorizontally(const Board &board, int xCoordinate, int yCoordinat
         }
     }
     if(opponentCounterLeft+opponentCounterRight == board.getWinningNumber() - 1) return 1000;
+    if(counterLeft+counterRight == board.getWinningNumber() - 1) return 100;
     return counterLeft+counterRight;
 
 }
@@ -248,6 +255,7 @@ int AI::evaluateDiagonally(const Board &board, int xCoordinate, int yCoordinate,
         }
     }
     if(opponentCounter1+opponentCounter2 == board.getWinningNumber() - 1) return 1000;
+    if(counter1+counter2 == board.getWinningNumber() - 1) return 100;
     return counter1+counter2;
 
 }
@@ -308,5 +316,6 @@ int AI::evaluateAntidiagonally(const Board &board, int xCoordinate, int yCoordin
     }
 
     if(opponentCounter1+opponentCounter2 == board.getWinningNumber() - 1) return 1000;
+    if(counter1+counter2 == board.getWinningNumber() - 1) return 100;
     return counter1+counter2;
 }

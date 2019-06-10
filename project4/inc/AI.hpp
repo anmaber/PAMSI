@@ -4,7 +4,7 @@
 class AI : public Player
 {
     std::pair<int,int> findBestMove(Board& board);
-    int minimax(Board& board, int depth, bool isMax, int x, int y,char player);
+    int minimax(Board& board, int depth, bool isMax, int x, int y,char player,int alpha, int beta);
     int evaluateBoard(const Board& board,int xCoordinate, int yCoordinate, char currentPlayer) const;
     int evaluateVertically(const Board& board,int xCoordinate, int yCoordinate, char currentPlayer) const;
     int evaluateHorizontally(const Board& board,int xCoordinate, int yCoordinate, char currentPlayer) const;

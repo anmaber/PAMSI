@@ -4,7 +4,7 @@
 int main()
 {
         std::cout<<"tic-tac-toe!\n";
-        Game g(3,3);
+        Game g(4,4);
         g.play();
 	return 0;
 }

@@ -42,6 +42,8 @@ set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
 
 project(tic-tac-toe)
 
+set(SFML_DIR "SFML-2.5.1/lib/cmake/SFML")
+
 set(SRC_LIST
     src/Player.cpp
     src/AI.cpp
@@ -52,12 +54,13 @@ set(SRC_LIST
 
 include_directories(inc)
 add_library(${PROJECT_NAME}-lib ${SRC_LIST})
+find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 add_executable(${PROJECT_NAME} src/main.cpp)
 
 if (UNIX)
-    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
+    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread sfml-graphics sfml-audio)
 else (UNIX)
-    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
+    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib sfml-graphics sfml-audio)
 endif (UNIX)
 
 set(TEST_SRC_LIST

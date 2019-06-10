@@ -16,7 +16,7 @@ int AI::minimax(Board &board, int depth, bool isMax, int x, int y,char player,in
         else return -evaluateBoard(board,x,y,'O');
     }
 
-    int best;
+    int best = 0;
     depth++;
 
     if(isMax)
@@ -31,13 +31,10 @@ int AI::minimax(Board &board, int depth, bool isMax, int x, int y,char player,in
                     board.putOnBoard(i,j,'O');
                     best = std::max(best,minimax(board,depth,!isMax,i,j,'O',alpha,beta));
                     alpha =std::max(best,alpha);
-                    //if(score > alpha) alpha = score;
                     board.eraseField(i,j);
-
                 }
                 if(alpha >= beta) break;
             }
-            if(alpha >= beta) break;
         }
     }
     else
@@ -53,21 +50,14 @@ int AI::minimax(Board &board, int depth, bool isMax, int x, int y,char player,in
                     best = std::min(best,minimax(board,depth,!isMax,i,j,'X',alpha,beta));
                     beta = std::min(best,beta);
                     board.eraseField(i,j);
-
                 }
                 if(alpha >= beta) break;
-
             }
             if(alpha >= beta) break;
         }
-
-
     }
-
-return best;
+    return best;
 }
-
-
 
 std::pair<int, int> AI::findBestMove(Board &board)
 {

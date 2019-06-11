@@ -10,7 +10,7 @@ int AI::minimax(Board &board, int depth, bool isMax, int x, int y,char player,in
 {
 
 
-    if(depth == board.getSize() + 1 || board.isFull() || board.checkWinner(x,y,player))
+    if(depth == 5 || board.isFull() || board.checkWinner(x,y,player))
     {
         if(player == 'O') return evaluateBoard(board,x,y,'X');
         else return -evaluateBoard(board,x,y,'O');
@@ -34,6 +34,7 @@ int AI::minimax(Board &board, int depth, bool isMax, int x, int y,char player,in
                     board.eraseField(i,j);
                 }
                 if(alpha >= beta) break;
+
             }
         }
     }
@@ -53,7 +54,6 @@ int AI::minimax(Board &board, int depth, bool isMax, int x, int y,char player,in
                 }
                 if(alpha >= beta) break;
             }
-            if(alpha >= beta) break;
         }
     }
     return best;
@@ -168,8 +168,8 @@ int AI::evaluateHorizontally(const Board &board, int xCoordinate, int yCoordinat
         else if (board.getFields()[i][yCoordinate]== ' ');
         else
         {
-            opponentCounterRight++;
-            counterRight = 0;
+            opponentCounterLeft++;
+            counterLeft = 0;
         }
     }
 
@@ -177,8 +177,8 @@ int AI::evaluateHorizontally(const Board &board, int xCoordinate, int yCoordinat
     {
         if (board.getFields()[i][yCoordinate]==currentPlayer)
         {
-            counterLeft++;
-            opponentCounterLeft = 0;
+            counterRight++;
+            opponentCounterRight = 0;
         }
         else if (board.getFields()[i][yCoordinate]== ' ');
         else
@@ -293,14 +293,14 @@ int AI::evaluateAntidiagonally(const Board &board, int xCoordinate, int yCoordin
     {
         if (board.getFields()[i][j]==currentPlayer)
         {
-            counter1++;
-            opponentCounter1 = 0;
+            counter2++;
+            opponentCounter2 = 0;
         }
         else if (board.getFields()[i][j]== ' ');
         else
         {
-            opponentCounter1++;
-            counter1 = 0;
+            opponentCounter2++;
+            counter2 = 0;
         }
 
     }

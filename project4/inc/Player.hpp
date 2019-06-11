@@ -4,7 +4,8 @@
 class Player
 {
     char sign_;
-    std::pair<int,int> getCoordinates(int max);
+
+    std::pair<int,int> setCoordinates(int max);
 
 public:
     Player(char sign);

@@ -2,12 +2,6 @@
 #include <vector>
 
 using Fields = std::vector<std::vector<char>>;
-/*
-enum class Player: char
-{
-    cross = 'X',
-    circle = 'O'
-};*/
 
 class Board
 {
@@ -30,8 +24,7 @@ public:
     void printBoard() const;
     int getSize() const;
     int getWinningNumber() const;
-
-    bool isFull();
+    bool isFull() const;
     void eraseField(int xCoordinate, int yCoordinate);
     bool putOnBoard(int xCoordinate, int yCoordinate,char currentPlayer);
     bool checkWinner(int xCoordinate, int yCoordinate,char currentPlayer) const;

@@ -12,6 +12,7 @@ class AI : public Player
     int evaluateAntidiagonally(const Board& board,int xCoordinate, int yCoordinate, char currentPlayer) const;
 
 public:
+
     AI() = default;
     AI(char sign);
     std::pair<int,int> move(Board& board);

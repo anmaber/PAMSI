@@ -19,6 +19,7 @@ Fields Board::getFields() const
 
 void Board::printBoard() const
 {
+    std::cout<<"TIC TAC TOE!\n";
     std::cout<<" |";
     for(int i = 0; i < size_; ++i)
         std::cout<< i <<"|";
@@ -162,7 +163,7 @@ void Board::eraseField(int xCoordinate, int yCoordinate)
     fields_[xCoordinate][yCoordinate] = ' ';
 }
 
-bool Board::isFull()
+bool Board::isFull() const
 {
     for(int i = 0 ;i < getSize();++i)
     {
